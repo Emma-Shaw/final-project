@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Profile = () => {
-    return <Wrapper>Profile</Wrapper>
+    return <Wrapper>My Profile</Wrapper>
 };
 
 const Wrapper = styled.div`

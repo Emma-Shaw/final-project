@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import GlobalStyle from "./GlobalStyles"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -10,10 +11,12 @@ import Profile from "./Profile";
 import SingleDrink from "./SingleDrink";
 import ToDrinkList from "./ToDrinkList";
 import Welcome from "./Welcome";
+import AboutUs from "./AboutUs"
 
 const App = () => {
   return (
     <BrowserRouter>
+    <GlobalStyle />
     <Header />
       <Wrapper>
         <Routes>
@@ -23,6 +26,7 @@ const App = () => {
           <Route exact path="/drinks/:drink" element={<SingleDrink />}></Route>
           <Route exact path="/to-drink" element={<ToDrinkList />}></Route>
           <Route exact path="/welcome" element={<Welcome />}></Route>
+          <Route exact path="/about-us" element={<AboutUs />}></Route>
         </Routes>
       </Wrapper>
       <Footer />
@@ -31,6 +35,9 @@ const App = () => {
 };
 
 const Wrapper = styled.div`
+  height: 100vh;
+  width: 100vh;
+  margin: 20px;
 `;
 
 export default App;
