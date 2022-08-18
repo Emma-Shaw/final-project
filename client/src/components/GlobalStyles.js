@@ -1,8 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-    * {
-        font-family: Arial, Helvetica, sans-serif;
+    :root {
+        --color-dark-wine: #780000;
+        --color-bright-red: #C1121F;
+        --color-cool-navy: #003049;
+        --color-chill-blue: #669BBC;
+        --color-calm-beige: #FDF0D5;
+        --font-body: "Montserrat", Arial, Helvetica, sans-serif;
     }
 
     html, body, div, span, applet, object, iframe,
@@ -32,6 +37,9 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        background: var(--color-calm-beige);
+        font-family: var(--font-body);
+        color: var(--color-cool-navy);
     }
     ol, ul, li {
         list-style: none;
@@ -45,10 +53,31 @@ const GlobalStyle = createGlobalStyle`
         content: none;
     }
     h1 {
-        font-size: 40px;
+        color: var(--color-cool-navy);
+        font-size: 25px;
     }
     h2 {
-        font-size: 30px;;
+        color: var(--color-chill-blue);
+        font-size: 22px;
+    }
+    h3 {
+        color: var(--color-bright-red);
+        font-size: 20px;
+    }
+    button {
+        width: 150px;
+        height: 45px;
+        font-size: 20px;
+        color: var(--color-calm-beige);
+        background: var(--color-bright-red);
+        border: none;
+        border-radius: 30px;
+        font-family: var(--font-body);
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.5; // to replace with animation
+        }
     }
 `;
 
