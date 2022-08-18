@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/happy_hour_ logo.png";
 
 const Footer = () => {
 
@@ -12,7 +13,7 @@ const Footer = () => {
     return (
         <Wrapper>
             <Quote>Ladies and gentlemen - it is <Italic>quitting time...</Italic></Quote>
-            <Logo onClick={ goToHome } >Happy Hour</Logo>
+            <Logo src={logo} />
         </Wrapper>
     );
 };
@@ -28,10 +29,8 @@ const Wrapper = styled.div`
 const Quote = styled.h2`
 `;
 
-const Logo = styled.h1`
-    &:hover {
-        cursor: pointer;
-    }
+const Logo = styled.img`
+    height: 100px;
 `;
 
 const Italic = styled.span`
