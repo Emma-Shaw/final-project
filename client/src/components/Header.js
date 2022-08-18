@@ -1,31 +1,44 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-    return <Wrapper>
-        <Logo>Happy Hour</Logo>
-        <NavigationBtns>
-        <NavigationBar>
-            <NavUl>
-                <NavLi><NavLink to="/about-us">About Us</NavLink></NavLi>
-                <NavLi><NavLink to="/to-drink">To Drink</NavLink></NavLi>
-                <NavLi><NavLink to="/profile">My Profile</NavLink></NavLi>
-            </NavUl>
-        </NavigationBar>
-        <LogOutBtn>Log out</LogOutBtn>
-        </NavigationBtns>
-    </Wrapper>
+
+    // When logo is clicked, user navigates back to Homepage
+    const toHome = useNavigate();
+    const goToHome = () => {
+        toHome("/");
+    };
+
+    return (
+        <Wrapper>
+            <Logo onClick={ goToHome } >Happy Hour</Logo>
+            <NavigationBtns>
+            <NavigationBar>
+                <NavUl>
+                    <NavLi><NavLink to="/about-us">About Us</NavLink></NavLi>
+                    <NavLi><NavLink to="/to-drink">To Drink</NavLink></NavLi>
+                    <NavLi><NavLink to="/profile">My Profile</NavLink></NavLi>
+                </NavUl>
+            </NavigationBar>
+            <LogOutBtn>Log out</LogOutBtn>
+            </NavigationBtns>
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
 `;
 
 const Logo = styled.h1`
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const NavigationBar = styled.nav`

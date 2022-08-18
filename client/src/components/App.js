@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyles"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
