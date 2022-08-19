@@ -13,6 +13,7 @@ const Footer = () => {
                         <IconListItem><ImPinterest2 /></IconListItem>
                     </IconsList>
                 </Icons>
+                <p>2022 @ Happy Hour Ltd. All rights reserved.</p>
                 <Logo><LogoImg src={logo} /></Logo>
             </Wrapper>
     );
@@ -21,7 +22,7 @@ const Footer = () => {
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 20px;
     height: 125px;
     bottom: 0px;

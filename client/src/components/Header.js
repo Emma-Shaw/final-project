@@ -29,11 +29,10 @@ const Header = () => {
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin-bottom: 10px;
     top: 0px;
-    box-shadow: 0px 1px 0px 0px var(--color-cool-navy);
 `;
 
 const Logo = styled.img`
@@ -44,7 +43,7 @@ const Logo = styled.img`
 
 const NavigationBar = styled.nav`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 400px;
 `;
 
