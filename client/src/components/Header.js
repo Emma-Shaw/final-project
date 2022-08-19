@@ -43,7 +43,7 @@ const Logo = styled.img`
 const NavigationBar = styled.nav`
     display: flex;
     justify-content: space-between;
-    width: 500px;
+    width: 400px;
 `;
 
 const NavigationBtns = styled.div`
