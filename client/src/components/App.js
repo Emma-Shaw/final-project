@@ -5,12 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Homepage from "./Homepage";
-import MultipleProducts from "./MultipleProducts";
 import Profile from "./Profile";
-import SingleProduct from "./SingleProduct";
-import ToDrinkList from "./ToDrinkList";
+import Menu from "./Menu";
 import Welcome from "./Welcome";
-import AboutUs from "./AboutUs"
+import About from "./About"
 
 const App = () => {
   return (
@@ -22,11 +20,9 @@ const App = () => {
           <Route exact path="/" element={<Welcome />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/drinks" element={<MultipleProducts />}></Route>
-          <Route path="/drinks/:drink" element={<SingleProduct />}></Route>
-          <Route path="/to-drink" element={<ToDrinkList />}></Route>
+          <Route path="/menu" element={<Menu />}></Route>
           <Route path="/welcome" element={<Welcome />}></Route>
-          <Route path="/about-us" element={<AboutUs />}></Route>
+          <Route path="/about" element={<About />}></Route>
         </Routes>
       </Wrapper>
       {window.location.pathname !== "/" && <Footer />}

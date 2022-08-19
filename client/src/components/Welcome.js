@@ -14,7 +14,7 @@ export const Welcome = () => {
         <Wrapper>
             <WelcomeMenu>
                 <WelcomeLogo src={ mainLogo } />
-                <GetStarted onClick={goToHome}>Get Started</GetStarted>
+                <GetStarted onClick={goToHome}>Get started</GetStarted>
             </WelcomeMenu>
             <WelcomeArt src={ mainArt } />
         </Wrapper>

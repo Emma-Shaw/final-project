@@ -1,7 +1,7 @@
 import styled from "styled-components";
 // import aboutUs from "../assets/about_us.png"
 
-const AboutUs = () => {
+const About = () => {
     return (
     <Wrapper>
         {/* <Header src={aboutUs} /> */}
@@ -21,4 +21,4 @@ const Header = styled.img`
     padding: 20px;
 `;
 
-export default AboutUs;
+export default About;

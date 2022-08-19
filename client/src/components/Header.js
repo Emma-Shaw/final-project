@@ -16,9 +16,9 @@ const Header = () => {
                 <NavigationBtns>
                 <NavigationBar>
                     <NavUl>
-                        <NavLi><NavLink to="/about-us">About Us</NavLink></NavLi>
-                        <NavLi><NavLink to="/to-drink">To-Drink List</NavLink></NavLi>
-                        <NavLi><NavLink to="/profile">My Profile</NavLink></NavLi>
+                        <NavLi><NavLink to="/about">About</NavLink></NavLi>
+                        <NavLi><NavLink to="/menu">Menu</NavLink></NavLi>
+                        <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
                     </NavUl>
                 </NavigationBar>
                 <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
@@ -43,7 +43,7 @@ const Logo = styled.img`
 
 const NavigationBar = styled.nav`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 400px;
 `;
 
@@ -56,7 +56,7 @@ const NavigationBtns = styled.div`
 const NavUl = styled.ul`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 350px;
 `;
 
