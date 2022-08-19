@@ -26,7 +26,6 @@ const Wrapper = styled.div`
     height: 125px;
     bottom: 0px;
     margin-top: 10px;
-    border-top: 10px solid var(--color-chill-blue);
 `;
 
 const Logo = styled.div`
