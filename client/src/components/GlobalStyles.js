@@ -71,15 +71,16 @@ const GlobalStyle = createGlobalStyle`
         width: 150px;
         height: 45px;
         font-size: 20px;
-        color: var(--color-calm-beige);
-        background: var(--color-chill-blue);
-        border: none;
-        border-radius: 30px;
+        color: var(--color-chill-blue);
+        border: 2px solid var(--color-chill-blue);
+        background: var(--color-calm-beige);
+        /* border-radius: 50px; */
         font-family: var(--font-body);
 
         &:hover {
             cursor: pointer;
-            background: var(--color-cool-navy);
+            background: var(--color-chill-blue);
+            color: var(--color-calm-beige);
         }
     }
     Link {

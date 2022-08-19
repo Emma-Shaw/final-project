@@ -11,24 +11,39 @@ import SingleDrink from "./SingleDrink";
 import ToDrinkList from "./ToDrinkList";
 import Welcome from "./Welcome";
 import AboutUs from "./AboutUs"
+import { useEffect, useState } from "react";
 
 const App = () => {
+
+  const [path, setPath] = useState(false);
+
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      setPath(true);
+    } else {
+      setPath(false);
+    }
+  }, [window.location.pathname]);
+
+  useEffect(() => {}, [path]);
+
   return (
     <BrowserRouter>
     <GlobalStyle />
-    <Header />
+    {path !== true && <Header />}
       <Wrapper>
         <Routes>
-          <Route exact path="/" element={<Homepage />}></Route>
-          <Route exact path="/profile" element={<Profile />}></Route>
-          <Route exact path="/drinks" element={<MultipleDrinks />}></Route>
-          <Route exact path="/drinks/:drink" element={<SingleDrink />}></Route>
-          <Route exact path="/to-drink" element={<ToDrinkList />}></Route>
-          <Route exact path="/welcome" element={<Welcome />}></Route>
-          <Route exact path="/about-us" element={<AboutUs />}></Route>
+          <Route exact path="/" element={<Welcome />}></Route>
+          <Route path="/home" element={<Homepage />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/drinks" element={<MultipleDrinks />}></Route>
+          <Route path="/drinks/:drink" element={<SingleDrink />}></Route>
+          <Route path="/to-drink" element={<ToDrinkList />}></Route>
+          <Route path="/welcome" element={<Welcome />}></Route>
+          <Route path="/about-us" element={<AboutUs />}></Route>
         </Routes>
       </Wrapper>
-      <Footer />
+      {path !== true && <Footer />}
     </BrowserRouter>
   );
 };

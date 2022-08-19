@@ -1,23 +1,29 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
 
+    const welcome = useNavigate();
+    const goToWelcome = () => {
+        welcome("/");
+    };
+
     return (
-        <Wrapper>
-            <LogoLink to="/"><Logo src={logo} /></LogoLink>
-            <NavigationBtns>
-            <NavigationBar>
-                <NavUl>
-                    <NavLi><NavLink to="/about-us">About Us</NavLink></NavLi>
-                    <NavLi><NavLink to="/to-drink">To Drink</NavLink></NavLi>
-                    <NavLi><NavLink to="/profile">My Profile</NavLink></NavLi>
-                </NavUl>
-            </NavigationBar>
-            <LogOutBtn>Log out</LogOutBtn>
-            </NavigationBtns>
-        </Wrapper>
+            <Wrapper>
+                <LogoLink to="/home"><Logo src={logo} /></LogoLink>
+                <NavigationBtns>
+                <NavigationBar>
+                    <NavUl>
+                        <NavLi><NavLink to="/about-us">About Us</NavLink></NavLi>
+                        <NavLi><NavLink to="/to-drink">To-Drink List</NavLink></NavLi>
+                        <NavLi><NavLink to="/profile">My Profile</NavLink></NavLi>
+                    </NavUl>
+                </NavigationBar>
+                <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
+                </NavigationBtns>
+            </Wrapper>
     );
 };
 

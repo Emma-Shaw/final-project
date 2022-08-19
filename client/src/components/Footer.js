@@ -4,17 +4,17 @@ import { ImInstagram, ImFacebook2, ImTwitter, ImPinterest2  } from "react-icons/
 
 const Footer = () => {
     return (
-        <Wrapper>
-            <Icons>
-                <IconsList>
-                    <IconListItem><ImInstagram /></IconListItem>
-                    <IconListItem><ImFacebook2 /></IconListItem>
-                    <IconListItem><ImTwitter /></IconListItem>
-                    <IconListItem><ImPinterest2 /></IconListItem>
-                </IconsList>
-            </Icons>
-            <Logo><LogoImg src={logo} /></Logo>
-        </Wrapper>
+            <Wrapper>
+                <Icons>
+                    <IconsList>
+                        <IconListItem><ImInstagram /></IconListItem>
+                        <IconListItem><ImFacebook2 /></IconListItem>
+                        <IconListItem><ImTwitter /></IconListItem>
+                        <IconListItem><ImPinterest2 /></IconListItem>
+                    </IconsList>
+                </Icons>
+                <Logo><LogoImg src={logo} /></Logo>
+            </Wrapper>
     );
 };
 
