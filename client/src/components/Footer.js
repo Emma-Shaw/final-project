@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
+import banner from "../assets/cheers_longest_version.png";
 import { ImInstagram, ImFacebook2, ImTwitter, ImPinterest2  } from "react-icons/im";
 
 const Footer = () => {
     return (
+        <>
+            <Banner src={banner} />
             <Wrapper>
                 <p>2022 @ Happy Hour Ltd. All rights reserved.</p>
                 <Icons>
@@ -16,6 +19,7 @@ const Footer = () => {
                 </Icons>
                 <Logo><LogoImg src={logo} /></Logo>
             </Wrapper>
+        </>
     );
 };
 
@@ -58,6 +62,13 @@ const IconListItem = styled.li`
         cursor: pointer;
         color: var(--color-cool-navy);
     }
+`;
+
+const Banner = styled.img`
+    display: flex;
+    align-self: center;
+    width: 100%;
+    border: 5px solid var(--color-chill-blue);
 `;
 
 export default Footer;
