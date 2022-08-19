@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
         --color-bright-red: #C1121F;
         --color-cool-navy: #003049;
         --color-chill-blue: #669BBC;
-        --color-calm-beige: #FDF0D5;
+        --color-calm-beige: #FFF8E8;
         --font-body: "Montserrat", Arial, Helvetica, sans-serif;
     }
 
@@ -69,14 +69,15 @@ const GlobalStyle = createGlobalStyle`
         height: 45px;
         font-size: 20px;
         color: var(--color-calm-beige);
-        background: var(--color-bright-red);
+        background: var(--color-chill-blue);
         border: none;
         border-radius: 30px;
         font-family: var(--font-body);
 
         &:hover {
             cursor: pointer;
-            opacity: 0.5; // to replace with animation
+            background: var(--color-cool-navy);
+            border: 2px solid var(--color-chill-blue);
         }
     }
 `;

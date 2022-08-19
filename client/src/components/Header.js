@@ -1,19 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import logo from "../assets/happy_hour_ logo.png";
+import logo from "../assets/happy_hour_logo.png";
 
 const Header = () => {
 
-    // When logo is clicked, user navigates back to Homepage
-    // const toHome = useNavigate();
-    // const goToHome = () => {
-    //     toHome("/");
-    // };
-
     return (
         <Wrapper>
-            <Logo src={logo} />
+            <LogoLink to="/"><Logo src={logo} /></LogoLink>
             <NavigationBtns>
             <NavigationBar>
                 <NavUl>
@@ -37,12 +30,10 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-    height: 100px;
+    height: 150px;
 `;
 
 const NavigationBar = styled.nav`
-    width: 50vh;
-    height: 10vh;
     display: flex;
     justify-content: space-evenly;
     margin-right: 50px;
@@ -58,14 +49,15 @@ const NavUl = styled.ul`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
-    width: 100%;
 `;
 
 const NavLi = styled.li`
 `;
 
 const NavLink = styled(Link)`
+`;
+
+const LogoLink = styled(Link)`
 `;
 
 const LogOutBtn = styled.button`

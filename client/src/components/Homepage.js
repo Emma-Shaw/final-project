@@ -1,10 +1,19 @@
 import styled from "styled-components";
+import banner from "../assets/cheers_poster_longer_version.png"
 
 const Homepage = () => {
-    return <Wrapper>Homepage</Wrapper>
+    return <Wrapper>
+        <Banner src={banner} />
+    </Wrapper>
 };
 
 const Wrapper = styled.div`
+    display: flex;
+`;
+
+const Banner = styled.img`
+    display: flex;
+    align-self: center;
 `;
 
 export default Homepage;

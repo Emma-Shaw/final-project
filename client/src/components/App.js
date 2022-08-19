@@ -34,8 +34,6 @@ const App = () => {
 };
 
 const Wrapper = styled.div`
-  height: 100vh;
-  width: 100vh;
   margin: 20px;
 `;
 
