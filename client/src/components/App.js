@@ -11,26 +11,12 @@ import SingleDrink from "./SingleDrink";
 import ToDrinkList from "./ToDrinkList";
 import Welcome from "./Welcome";
 import AboutUs from "./AboutUs"
-import { useEffect, useState } from "react";
 
 const App = () => {
-
-  const [path, setPath] = useState(false);
-
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      setPath(true);
-    } else {
-      setPath(false);
-    }
-  }, [window.location.pathname]);
-
-  useEffect(() => {}, [path]);
-
   return (
     <BrowserRouter>
     <GlobalStyle />
-    {path !== true && <Header />}
+    {window.location.pathname !== "/" && <Header />}
       <Wrapper>
         <Routes>
           <Route exact path="/" element={<Welcome />}></Route>
@@ -43,7 +29,7 @@ const App = () => {
           <Route path="/about-us" element={<AboutUs />}></Route>
         </Routes>
       </Wrapper>
-      {path !== true && <Footer />}
+      {window.location.pathname !== "/" && <Footer />}
     </BrowserRouter>
   );
 };

@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import banner from "../assets/cheers_poster_longer_version.png"
+import banner from "../assets/cheers_poster_longer_version.png";
 
 const Homepage = () => {
-    return <Wrapper>
-        <Banner src={banner} />
-    </Wrapper>
+    return (
+        <Wrapper>
+            <Banner src={banner} />
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
