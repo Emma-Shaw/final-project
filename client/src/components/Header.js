@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     align-items: center;
     margin-bottom: 10px;
     top: 0px;
-    box-shadow: 0px 2px 0px 0px var(--color-cool-navy);
+    box-shadow: 0px 1px 0px 0px var(--color-cool-navy);
 `;
 
 const Logo = styled.img`
