@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import drinkList from "../assets/to_drink_list.png"
+// import drinkList from "../assets/to_drink_list.png"
 
 export const ToDrinkList = () => {
     return (
         <Wrapper>
-            <Header src={drinkList} />
+            {/* <Header src={drinkList} /> */}
+            To drink list
         </Wrapper>
     );
 };

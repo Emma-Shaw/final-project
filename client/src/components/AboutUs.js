@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import aboutUs from "../assets/about_us.png"
+// import aboutUs from "../assets/about_us.png"
 
 const AboutUs = () => {
     return (
     <Wrapper>
-        <Header src={aboutUs} />
+        {/* <Header src={aboutUs} /> */}
+        About us
     </Wrapper>
     );
 };

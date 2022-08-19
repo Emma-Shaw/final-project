@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import profile from "../assets/profile.png"
+// import profile from "../assets/profile.png"
 
 const Profile = () => {
     return (
         <Wrapper>
-            <Header src={profile} />
+            {/* <Header src={profile} /> */}
+            Profile
         </Wrapper>
     );
 };
