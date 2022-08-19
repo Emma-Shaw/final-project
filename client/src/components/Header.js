@@ -29,7 +29,7 @@ const Header = () => {
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
     top: 0px;

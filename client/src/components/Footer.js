@@ -5,6 +5,7 @@ import { ImInstagram, ImFacebook2, ImTwitter, ImPinterest2  } from "react-icons/
 const Footer = () => {
     return (
             <Wrapper>
+                <p>2022 @ Happy Hour Ltd. All rights reserved.</p>
                 <Icons>
                     <IconsList>
                         <IconListItem><ImInstagram /></IconListItem>
@@ -13,7 +14,6 @@ const Footer = () => {
                         <IconListItem><ImPinterest2 /></IconListItem>
                     </IconsList>
                 </Icons>
-                <p>2022 @ Happy Hour Ltd. All rights reserved.</p>
                 <Logo><LogoImg src={logo} /></Logo>
             </Wrapper>
     );
@@ -22,7 +22,7 @@ const Footer = () => {
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 20px;
     height: 125px;
     bottom: 0px;
