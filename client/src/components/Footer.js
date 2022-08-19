@@ -19,14 +19,14 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    width: 98%;
     height: 125px;
     bottom: 0px;
+    margin-top: 10px;
+    border-top: 10px solid var(--color-chill-blue);
 `;
 
 const Logo = styled.div`

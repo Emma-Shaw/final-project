@@ -31,13 +31,15 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    margin: 10px;
+    margin-bottom: 10px;
     top: 0px;
+    border-bottom: 10px solid var(--color-chill-blue);
 `;
 
 const Logo = styled.img`
     height: 150px;
+    padding: 5px;
+    padding-left: 0px;
 `;
 
 const NavigationBar = styled.nav`
@@ -67,6 +69,7 @@ const NavLink = styled(Link)`
     text-decoration: none;
     color: var(--color-cool-navy);
     padding-bottom: 5px;
+    font-size: 15px;
 
     &:focus, &:active, &:visited, &:link, &:hover {
         text-decoration: none;

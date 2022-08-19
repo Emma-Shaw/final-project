@@ -8,8 +8,10 @@ const GlobalStyle = createGlobalStyle`
         --color-chill-blue: #669BBC;
         --color-calm-beige: #FFF8E8;
         --font-body: "Montserrat", Arial, Helvetica, sans-serif;
+        letter-spacing: 1px;
         width: 100%;
         height: 100%;
+        margin: 20px;
     }
 
     html, body, div, span, applet, object, iframe,
@@ -55,6 +57,9 @@ const GlobalStyle = createGlobalStyle`
         content: '';
         content: none;
     }
+    p {
+        font-size: 15px;
+    }
     h1 {
         color: var(--color-cool-navy);
         font-size: 25px;
@@ -69,12 +74,11 @@ const GlobalStyle = createGlobalStyle`
     }
     button {
         width: 150px;
-        height: 45px;
-        font-size: 20px;
+        height: 40px;
+        font-size: 15px;
         color: var(--color-chill-blue);
         border: 2px solid var(--color-chill-blue);
         background: var(--color-calm-beige);
-        /* border-radius: 50px; */
         font-family: var(--font-body);
 
         &:hover {

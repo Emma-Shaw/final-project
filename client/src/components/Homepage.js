@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import banner from "../assets/cheers_poster_longer_version.png";
+import banner from "../assets/cheers_longest_version.png";
 
 const Homepage = () => {
     return (
@@ -11,12 +11,13 @@ const Homepage = () => {
 
 const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
 `;
 
 const Banner = styled.img`
     display: flex;
     align-self: center;
-    max-width: 100%;
+    width: 100%;
 `;
 
 export default Homepage;
