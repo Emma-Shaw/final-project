@@ -44,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: var(--font-body);
         color: var(--color-cool-navy);
         margin: 10px;
+        letter-spacing: 1px;
     }
     ol, ul, li {
         list-style: none;
@@ -79,6 +80,7 @@ const GlobalStyle = createGlobalStyle`
         border: 2px solid var(--color-bright-red);
         background: var(--color-calm-beige);
         font-family: var(--font-body);
+        letter-spacing: 1px;
 
         &:hover {
             cursor: pointer;
