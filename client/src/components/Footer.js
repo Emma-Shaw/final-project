@@ -39,7 +39,7 @@ const Icons = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--color-chill-blue);
+    color: var(--color-bright-red);
     height: 100%;
 `;
 

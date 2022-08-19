@@ -22,10 +22,12 @@ export const Welcome = () => {
 };
 
 const Wrapper = styled.div`
+    position: fixed;
     display: flex;
     align-items: center;
     margin-top: 200px;
     margin-left: 100px;
+    background: var(--color-calm-beige);
 `;
 
 const WelcomeMenu = styled.div`

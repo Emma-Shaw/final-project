@@ -11,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
         letter-spacing: 1px;
         width: 100%;
         height: 100%;
-        margin: 20px;
     }
 
     html, body, div, span, applet, object, iframe,
@@ -76,14 +75,14 @@ const GlobalStyle = createGlobalStyle`
         width: 150px;
         height: 40px;
         font-size: 15px;
-        color: var(--color-chill-blue);
-        border: 2px solid var(--color-chill-blue);
+        color: var(--color-bright-red);
+        border: 2px solid var(--color-bright-red);
         background: var(--color-calm-beige);
         font-family: var(--font-body);
 
         &:hover {
             cursor: pointer;
-            background: var(--color-chill-blue);
+            background: var(--color-bright-red);
             color: var(--color-calm-beige);
         }
     }
