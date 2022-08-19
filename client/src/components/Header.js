@@ -27,6 +27,7 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 10px;
     margin: 10px;
+    top: 0px;
 `;
 
 const Logo = styled.img`
@@ -35,8 +36,8 @@ const Logo = styled.img`
 
 const NavigationBar = styled.nav`
     display: flex;
-    justify-content: space-evenly;
-    margin-right: 50px;
+    justify-content: space-between;
+    width: 500px;
 `;
 
 const NavigationBtns = styled.div`
@@ -49,12 +50,25 @@ const NavUl = styled.ul`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 350px;
 `;
 
 const NavLi = styled.li`
+    padding: 5px;
 `;
 
 const NavLink = styled(Link)`
+    text-decoration: none;
+    color: var(--color-cool-navy);
+    padding-bottom: 5px;
+
+    &:focus, &:active, &:visited, &:link, &:hover {
+        text-decoration: none;
+    }
+
+    &:hover {
+        border-bottom: 2px solid var(--color-cool-navy);
+    }
 `;
 
 const LogoLink = styled(Link)`

@@ -8,6 +8,8 @@ const GlobalStyle = createGlobalStyle`
         --color-chill-blue: #669BBC;
         --color-calm-beige: #FFF8E8;
         --font-body: "Montserrat", Arial, Helvetica, sans-serif;
+        width: 100%;
+        height: 100%;
     }
 
     html, body, div, span, applet, object, iframe,
@@ -40,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
         background: var(--color-calm-beige);
         font-family: var(--font-body);
         color: var(--color-cool-navy);
+        margin: 10px;
     }
     ol, ul, li {
         list-style: none;
@@ -77,7 +80,14 @@ const GlobalStyle = createGlobalStyle`
         &:hover {
             cursor: pointer;
             background: var(--color-cool-navy);
-            border: 2px solid var(--color-chill-blue);
+        }
+    }
+    Link {
+        text-decoration: none;
+        color: var(--color-cool-navy);
+
+        &:focus, &:active, &:visited, &:link, &:hover {
+            text-decoration: none;
         }
     }
 `;

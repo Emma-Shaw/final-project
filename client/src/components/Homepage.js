@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 const Banner = styled.img`
     display: flex;
     align-self: center;
+    max-width: 100%;
 `;
 
 export default Homepage;
