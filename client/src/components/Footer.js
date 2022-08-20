@@ -78,7 +78,6 @@ const Banner = styled.img`
     width: 100%;
     border-top: 5px solid var(--color-chill-blue);
     border-bottom: 5px solid var(--color-chill-blue);
-    opacity: 0.75;
 `;
 
 export default Footer;

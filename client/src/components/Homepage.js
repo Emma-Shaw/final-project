@@ -86,7 +86,7 @@ const Tier1 = styled.div`
 const Image = styled.img`
     width: 400px;
     border-radius: 50%;
-    opacity: 0.75;
+    opacity: 0.85;
 `;
 
 const Speech = styled.div`
