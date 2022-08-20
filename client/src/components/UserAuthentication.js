@@ -1,28 +1,51 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/happy_hour_logo.png";
+import { useState } from "react";
 
 const UserAuthentication = () => {
+
+    const [createAccount, setCreateAccount] = useState(false);
 
     const home = useNavigate();
     const goToHome = () => {
         home("/home");
+        setCreate(false);
+    };
+
+    const setCreate = () => {
+        setCreateAccount(true);
+    };
+
+    const returnLogin = () => {
+        setCreateAccount(false);
     };
 
     return (
         <Wrapper>
             <Logo src={logo} />
-            <SignUp>
+            {createAccount === false && <Login>
+            <Title>Login</Title>
+            <UserInputs>
+                <FormInput type="text" placeholder="Email" value="" />
+                <FormInput type="password" placeholder="Password" value="" />
+            </UserInputs>
+            <UserActionBtn onClick={ goToHome }>Login</UserActionBtn>
+            <Statement>Don't have an account? Let's create one.</Statement>
+            <UserActionBtn onClick={setCreate}>Create account</UserActionBtn>
+            </Login>}
+            {createAccount === true && <SignUp>
                 <Title>Sign-up</Title>
-                <NewUserInputs>
+                <UserInputs>
                     <FormInput type="text" placeholder="Given name" value="" />
                     <FormInput type="text" placeholder="Surname" value="" />
                     <FormInput type="text" placeholder="Email" value="" />
                     <FormInput type="password" placeholder="Password" value="" />
-                </NewUserInputs>
+                </UserInputs>
                 <Statement>By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.</Statement>
-                <SignUpBtn onClick={ goToHome }>Sign-up</SignUpBtn>
-            </SignUp>
+                <UserActionBtn onClick={ goToHome }>Sign-up</UserActionBtn>
+                <UserActionBtn onClick={ returnLogin }>Return</UserActionBtn>
+            </SignUp>}
         </Wrapper>
     );
 };
@@ -36,16 +59,26 @@ const Wrapper = styled.div`
     text-align: center;
 `;
 
+const Login = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const SignUp = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const Title = styled.h1`
     margin: 20px 0px;
 `;
 
-const NewUserInputs = styled.div`
+const UserInputs = styled.div`
     display: flex;
     flex-direction: column;
+    margin: 10px;
 `;
 
 const FormInput = styled.input`
@@ -60,8 +93,8 @@ const Statement = styled.p`
     margin: 10px;
 `;
 
-const SignUpBtn = styled.button`
-    margin: 20px 0px;
+const UserActionBtn = styled.button`
+    margin: 10px 0px;
 `;
 
 const Logo = styled.img`
