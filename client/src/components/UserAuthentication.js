@@ -27,8 +27,8 @@ const UserAuthentication = () => {
             {createAccount === false && <Login>
             <Title>Login</Title>
             <UserInputs>
-                <FormInput type="text" placeholder="Email" value="" />
-                <FormInput type="password" placeholder="Password" value="" />
+                <FormInput type="text" placeholder="Email" />
+                <FormInput type="password" placeholder="Password" />
             </UserInputs>
             <UserActionBtn onClick={ goToHome }>Login</UserActionBtn>
             <Statement>Don't have an account? Let's create one.</Statement>
@@ -37,10 +37,10 @@ const UserAuthentication = () => {
             {createAccount === true && <SignUp>
                 <Title>Sign-up</Title>
                 <UserInputs>
-                    <FormInput type="text" placeholder="Given name" value="" />
-                    <FormInput type="text" placeholder="Surname" value="" />
-                    <FormInput type="text" placeholder="Email" value="" />
-                    <FormInput type="password" placeholder="Password" value="" />
+                    <FormInput type="text" placeholder="Given name" />
+                    <FormInput type="text" placeholder="Surname" />
+                    <FormInput type="text" placeholder="Email" />
+                    <FormInput type="password" placeholder="Password" />
                 </UserInputs>
                 <Statement>By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.</Statement>
                 <UserActionBtn onClick={ goToHome }>Sign-up</UserActionBtn>

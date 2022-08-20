@@ -102,7 +102,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 15px;
         font-family: var(--font-body);
         background: var(--color-calm-beige);
-        color: var(--color-chill-blue);
+        color: var(--color-dark-wine);
         border: 1px solid var(--color-cool-navy);
 
         ::placeholder{
