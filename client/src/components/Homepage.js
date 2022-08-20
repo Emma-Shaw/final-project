@@ -19,7 +19,10 @@ const Homepage = () => {
             </Purpose>
             <Tier1>
                 <Image src={redWinePour} />
-                <Speech>Hello Hello Hello</Speech>
+                <Speech>
+                    <h1>Get started</h1>
+                    <CreateBtn>Create menu</CreateBtn>
+                </Speech>
             </Tier1>
             <Tier2>
                 <Image src={reviews} />
@@ -31,6 +34,7 @@ const Homepage = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 100%;
 `;
@@ -67,7 +71,8 @@ const Banner = styled.img`
 const Tier1 = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 800px;
     padding: 20px;
 `;
 
@@ -83,6 +88,12 @@ const Image = styled.img`
 `;
 
 const Speech = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const CreateBtn = styled.button`
+    margin-top: 20px;
 `;
 
 export default Homepage;
