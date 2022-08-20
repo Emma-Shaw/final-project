@@ -95,6 +95,20 @@ const GlobalStyle = createGlobalStyle`
             text-decoration: none;
         }
     }
+    input {
+        width: 300px;
+        padding: 10px;
+        margin: 5px 0px;
+        font-size: 15px;
+        font-family: var(--font-body);
+        background: var(--color-calm-beige);
+        color: var(--color-chill-blue);
+        border: 1px solid var(--color-cool-navy);
+
+        ::placeholder{
+            color: var(--color-cool-navy);
+        };
+    }
 `;
 
 export default GlobalStyle;

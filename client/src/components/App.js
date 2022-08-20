@@ -9,15 +9,17 @@ import Profile from "./Profile";
 import Menu from "./Menu";
 import Welcome from "./Welcome";
 import About from "./About"
+import UserAuthentication from "./UserAuthentication";
 
 const App = () => {
   return (
     <BrowserRouter>
     <GlobalStyle />
     <Wrapper>
-    {window.location.pathname !== "/" && <Header />}
+    {window.location.pathname !== "/" || window.location.pathname !== "/authentication" && <Header />}
         <Routes>
           <Route exact path="/" element={<Welcome />}></Route>
+          <Route exact path="/authentication" element={<UserAuthentication />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
@@ -25,7 +27,7 @@ const App = () => {
           <Route path="/about" element={<About />}></Route>
         </Routes>
       </Wrapper>
-      {window.location.pathname !== "/" && <Footer />}
+      {window.location.pathname !== "/" || window.location.pathname !== "/authentication" && <Footer />}
     </BrowserRouter>
   );
 };

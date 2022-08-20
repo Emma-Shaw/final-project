@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 export const Welcome = () => {
 
-    const home = useNavigate();
-    const goToHome = () => {
-        home("/home");
+    const authenticate = useNavigate();
+    const goToAuthentication = () => {
+        authenticate("/authentication");
     };
 
     return (
         <Wrapper>
             <WelcomeMenu>
                 <WelcomeLogo src={ mainLogo } />
-                <GetStarted onClick={goToHome}>Get started</GetStarted>
+                <GetStarted onClick={goToAuthentication}>Get started</GetStarted>
             </WelcomeMenu>
             <WelcomeArt src={ mainArt } />
         </Wrapper>
