@@ -39,13 +39,16 @@ const PurposeBtn = styled.button`
     position: absolute;
     background: none;
     color: var(--color-calm-beige);
-    border: 2px solid var(--color-calm-beige);
+    border: 3px solid var(--color-calm-beige);
+    width: 300px;
+    height: 50px;
+    font-size: larger;
 
     &:hover {
-        background: none;
+        background: var(--color-calm-beige);
         cursor: pointer;
-        color: var(--color-chill-blue);
-        border: 2px solid var(--color-chill-blue);
+        color: var(--color-cool-navy);
+        border: 3px solid var(--color-calm-beige);
     }
 `;
 
