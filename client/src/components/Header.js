@@ -11,6 +11,9 @@ const Header = () => {
     };
 
     return (
+        <>
+        <FirstBorder></FirstBorder>
+        <SecondBorder></SecondBorder>
             <Wrapper>
                 <LogoLink to="/home"><Logo src={logo} /></LogoLink>
                 <NavigationBtns>
@@ -24,19 +27,33 @@ const Header = () => {
                 <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
                 </NavigationBtns>
             </Wrapper>
+        </>
     );
 };
+
+const FirstBorder = styled.div`
+    height: 50px;
+    background: var(--color-cool-navy);
+    color: var(--color-calm-beige);
+`;
+
+const SecondBorder = styled.div`
+    height: 10px;
+    background: var(--color-chill-blue);
+    color: var(--color-calm-beige);
+`;
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    padding: 20px;
     top: 0px;
+    border-top: 50px solid var(--color-chill-blue);
 `;
 
 const Logo = styled.img`
-    height: 150px;
+    height: 100px;
     padding: 5px;
     padding-left: 0px;
 `;

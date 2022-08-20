@@ -43,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
         background: var(--color-calm-beige);
         font-family: var(--font-body);
         color: var(--color-cool-navy);
-        /* margin: 10px; */
         letter-spacing: 1px;
     }
     ol, ul, li {

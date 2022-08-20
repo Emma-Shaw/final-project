@@ -8,7 +8,7 @@ const Footer = () => {
         <>
             <Banner src={banner} />
             <Wrapper>
-                <p>2022 @ Happy Hour Ltd. All rights reserved.</p>
+                <License>2022 @ Happy Hour Ltd. All rights reserved.</License>
                 <Icons>
                     <IconsList>
                         <IconListItem><ImInstagram /></IconListItem>
@@ -34,25 +34,33 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.div`
+    display: flex;
+    width: 300px;
+    justify-content: flex-end;
+`;
+
+const License = styled.p`
+    width: 300px;
 `;
 
 const LogoImg = styled.img`
-    height: 100px;
+    width: 150px;
 `;
 
 const Icons = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     color: var(--color-bright-red);
     height: 100%;
+    width: 450px;
 `;
 
 const IconsList = styled.ul`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 200px;
+    justify-content: space-evenly;
+    width: 300px;
 `;
 
 const IconListItem = styled.li`
