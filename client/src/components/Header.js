@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
 import { useNavigate } from "react-router-dom";
+import { ImEqualizer } from "react-icons/im";
 
 const Header = () => {
 
@@ -12,8 +13,8 @@ const Header = () => {
 
     return (
         <>
-        <FirstBorder></FirstBorder>
-        <SecondBorder></SecondBorder>
+        <FirstBorder />
+        <SecondBorder><SettingsBtn><ImEqualizer /></SettingsBtn></SecondBorder>
             <Wrapper>
                 <LogoLink to="/home"><Logo src={logo} /></LogoLink>
                 <NavigationBtns>
@@ -32,15 +33,36 @@ const Header = () => {
 };
 
 const FirstBorder = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     height: 50px;
     background: var(--color-cool-navy);
     color: var(--color-calm-beige);
 `;
 
 const SecondBorder = styled.div`
-    height: 10px;
+    display: flex;
+    align-items: center;
+    height: 75px;
+    padding: 20px;
     background: var(--color-chill-blue);
     color: var(--color-calm-beige);
+`;
+
+const SettingsBtn = styled.button`
+    background: var(--color-chill-blue);
+    border: 2px solid var(--color-calm-beige);
+    width: 50px;
+    height: 35px;
+    color: var(--color-calm-beige);
+    padding-top: 5px;
+
+    &:hover {
+        cursor: pointer;
+        background: var(--color-calm-beige);
+        color: var(--color-cool-navy);
+    }
 `;
 
 const Wrapper = styled.div`
@@ -49,7 +71,6 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 20px;
     top: 0px;
-    border-top: 50px solid var(--color-chill-blue);
 `;
 
 const Logo = styled.img`
