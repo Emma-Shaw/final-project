@@ -51,7 +51,7 @@ const Icons = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-bright-red);
+    color: var(--color-dark-wine);
     height: 100%;
     width: 450px;
 `;
