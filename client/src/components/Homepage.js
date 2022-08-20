@@ -11,12 +11,12 @@ const Homepage = () => {
                 <PurposeBtn>Our purpose</PurposeBtn>
             </Purpose>
             <Tier1>
-                <Speech></Speech>
                 <Image src={redWinePour} />
+                <Speech>Hello Hello Hello</Speech>
             </Tier1>
-            <Tier3>
+            <Tier2>
                 <Image src={reviews} />
-            </Tier3>
+            </Tier2>
         </Wrapper>
     );
 };
@@ -59,17 +59,20 @@ const Banner = styled.img`
 
 const Tier1 = styled.div`
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
     padding: 20px;
 `;
 
-const Tier3 = styled.div`
+const Tier2 = styled.div`
     display: flex;
+    justify-content: flex-end;
     padding: 20px;
 `;
 
 const Image = styled.img`
     width: 400px;
+    opacity: 0.75;
 `;
 
 const Speech = styled.div`
