@@ -77,15 +77,15 @@ const Banner = styled.img`
 const Tier1 = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 800px;
-    padding: 20px;
+    justify-content: space-evenly;
+    margin: 20px;
+    width: 900px;
 `;
 
 const Tier2 = styled.div`
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
+    margin: 20px;
 `;
 
 const Image = styled.img`
@@ -96,6 +96,8 @@ const Image = styled.img`
 const Speech = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 400px;
 `;
 
 const CreateBtn = styled.button`
