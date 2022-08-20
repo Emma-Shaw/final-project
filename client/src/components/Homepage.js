@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import redWinePour from "../assets/red_wine_pour.jpg";
-import reviews from "../assets/reviews.png";
 import friendsCooking from "../assets/friends_cooking.jpg";
+import circle from "../assets/circle_no_bg.png";
 import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
@@ -24,15 +24,12 @@ const Homepage = () => {
                 <PurposeBtn onClick={ goToPurpose }>Our purpose</PurposeBtn>
             </Purpose>
             <Tier1>
-                <Image src={redWinePour} />
                 <Speech>
                     <h1>Get started</h1>
                     <CreateBtn onClick={goCreate} >Create menu</CreateBtn>
                 </Speech>
+                <Image src={redWinePour} />
             </Tier1>
-            <Tier2>
-                <Image src={reviews} />
-            </Tier2>
         </Wrapper>
     );
 };
@@ -40,7 +37,6 @@ const Homepage = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     height: 100%;
 `;
@@ -75,21 +71,21 @@ const Banner = styled.img`
 `;
 
 const Tier1 = styled.div`
+    background-image: url(${circle});
+    background-size: 400px;
+    background-position: center left;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    margin: 20px;
+    align-self: center;
+    justify-content: space-between;
+    margin: 50px;
     width: 900px;
-`;
-
-const Tier2 = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px;
 `;
 
 const Image = styled.img`
     width: 400px;
+    border-radius: 50%;
     opacity: 0.75;
 `;
 

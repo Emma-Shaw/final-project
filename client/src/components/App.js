@@ -37,7 +37,7 @@ const App = () => {
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
-  margin-bottom: 175px;
+  /* margin-bottom: 175px; */
 `;
 
 export default App;
