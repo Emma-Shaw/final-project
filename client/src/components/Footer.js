@@ -68,7 +68,8 @@ const Banner = styled.img`
     display: flex;
     align-self: center;
     width: 100%;
-    border: 5px solid var(--color-chill-blue);
+    border-top: 5px solid var(--color-chill-blue);
+    border-bottom: 5px solid var(--color-chill-blue);
 `;
 
 export default Footer;
