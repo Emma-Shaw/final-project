@@ -2,13 +2,20 @@ import styled from "styled-components";
 import redWinePour from "../assets/red_wine_pour.jpg";
 import reviews from "../assets/reviews.png";
 import friendsCooking from "../assets/friends_cooking.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+
+    const purpose = useNavigate();
+    const goToPurpose = () => {
+        purpose("/purpose");
+    };
+
     return (
         <Wrapper>
             <Purpose>
                 <Banner src={friendsCooking} />
-                <PurposeBtn>Our purpose</PurposeBtn>
+                <PurposeBtn onClick={ goToPurpose }>Our purpose</PurposeBtn>
             </Purpose>
             <Tier1>
                 <Image src={redWinePour} />

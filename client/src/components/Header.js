@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
 import { useNavigate } from "react-router-dom";
-import { ImEqualizer } from "react-icons/im";
+import { ImEqualizer, ImSpoonKnife } from "react-icons/im";
 
 const Header = () => {
 
@@ -13,7 +13,8 @@ const Header = () => {
 
     return (
         <>
-        <FirstBorder />
+        {/* to update - replace with user name variable */}
+        <FirstBorder>Welcome, Emma &nbsp; <ImSpoonKnife /></FirstBorder>
         <SecondBorder><SettingsBtn><ImEqualizer /></SettingsBtn></SecondBorder>
             <Wrapper>
                 <LogoLink to="/home"><Logo src={logo} /></LogoLink>
@@ -37,6 +38,7 @@ const FirstBorder = styled.div`
     justify-content: flex-end;
     align-items: center;
     height: 50px;
+    padding: 20px;
     background: var(--color-cool-navy);
     color: var(--color-calm-beige);
 `;
