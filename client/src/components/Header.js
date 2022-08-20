@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
 import { useNavigate } from "react-router-dom";
-import { ImEqualizer, ImSpoonKnife } from "react-icons/im";
+import { ImMenu, ImSpoonKnife } from "react-icons/im";
 
 const Header = () => {
 
@@ -15,7 +15,7 @@ const Header = () => {
         <>
         {/* to update - replace with user name variable */}
         <FirstBorder>Welcome, Emma &nbsp; <ImSpoonKnife /></FirstBorder>
-        <SecondBorder><SettingsBtn><ImEqualizer /></SettingsBtn></SecondBorder>
+        <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
             <Wrapper>
                 <LogoLink to="/home"><Logo src={logo} /></LogoLink>
                 <NavigationBtns>
