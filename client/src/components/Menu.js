@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export const Menu = () => {
+
+    const create = useNavigate();
+    const goCreate = () => {
+        create("/create-menu");
+    };
+
     return (
         <Wrapper>
             Start creating
-            <CreateBtn>Create menu</CreateBtn>
+            <CreateBtn onClick={goCreate} >Create menu</CreateBtn>
         </Wrapper>
     );
 };

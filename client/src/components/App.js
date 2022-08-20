@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Homepage from "./Homepage";
 import Profile from "./Profile";
+import CreateMenu from "./CreateMenu";
 import Menu from "./Menu";
 import Welcome from "./Welcome";
 import OurPurpose from "./OurPurpose"
@@ -22,6 +23,7 @@ const App = () => {
           <Route exact path="/authentication" element={<UserAuthentication />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/create-menu" element={<CreateMenu />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/welcome" element={<Welcome />}></Route>
           <Route path="/purpose" element={<OurPurpose />}></Route>

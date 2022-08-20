@@ -11,6 +11,12 @@ const Homepage = () => {
         purpose("/purpose");
     };
 
+    const create = useNavigate();
+    const goCreate = () => {
+        create("/create-menu");
+        window.location.reload();
+    };
+
     return (
         <Wrapper>
             <Purpose>
@@ -21,7 +27,7 @@ const Homepage = () => {
                 <Image src={redWinePour} />
                 <Speech>
                     <h1>Get started</h1>
-                    <CreateBtn>Create menu</CreateBtn>
+                    <CreateBtn onClick={goCreate} >Create menu</CreateBtn>
                 </Speech>
             </Tier1>
             <Tier2>
