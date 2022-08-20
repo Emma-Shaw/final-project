@@ -20,7 +20,7 @@ const Header = () => {
                 <NavigationBtns>
                 <NavigationBar>
                     <NavUl>
-                        <NavLi><NavLink to="/about">About</NavLink></NavLi>
+                        <NavLi><NavLink to="/purpose">Our purpose</NavLink></NavLi>
                         <NavLi><NavLink to="/menu">Menu</NavLink></NavLi>
                         <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
                     </NavUl>

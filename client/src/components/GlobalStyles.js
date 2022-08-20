@@ -75,15 +75,15 @@ const GlobalStyle = createGlobalStyle`
         width: 150px;
         height: 40px;
         font-size: 15px;
-        color: var(--color-bright-red);
-        border: 2px solid var(--color-bright-red);
+        color: var(--color-dark-wine);
+        border: 2px solid var(--color-dark-wine);
         background: var(--color-calm-beige);
         font-family: var(--font-body);
         letter-spacing: 1px;
 
         &:hover {
             cursor: pointer;
-            background: var(--color-bright-red);
+            background: var(--color-dark-wine);
             color: var(--color-calm-beige);
         }
     }

@@ -8,7 +8,7 @@ import Homepage from "./Homepage";
 import Profile from "./Profile";
 import Menu from "./Menu";
 import Welcome from "./Welcome";
-import About from "./About"
+import OurPurpose from "./OurPurpose"
 import UserAuthentication from "./UserAuthentication";
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/welcome" element={<Welcome />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/purpose" element={<OurPurpose />}></Route>
         </Routes>
       </Wrapper>
       {window.location.pathname !== "/" && window.location.pathname !== "/authentication" && <Footer />}
@@ -34,7 +34,7 @@ const App = () => {
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   margin-bottom: 175px;
 `;
 
