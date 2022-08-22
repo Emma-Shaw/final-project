@@ -1,3 +1,7 @@
+// Possible wine pairings:
+// ["lamb", "venison", "vegetables", "chicken", "pasta", "cheese", "veal", "calamari", "cod", "sandwich", "spanakopita",
+//  "pizza", "pork", "turkey", "beef", "duck", "poutine", "shrimp", "salmon", "lobster", "chowder"];
+
 const redWines = [
     {
         "name": "Bodegas Borsao Viña Borgia Garnacha",
@@ -29,7 +33,7 @@ const redWines = [
         "organic": true,
         "sugar": "low",
         "price": 22.00,
-        "pairings": ["vegetables", "chicken", "potatoes"]
+        "pairings": ["vegetables", "chicken"]
     },
     {
         "name": "Duzsi le Tour de Duzsi 2017",
@@ -61,7 +65,7 @@ const redWines = [
         "organic": false,
         "sugar": "low",
         "price": 16.95,
-        "pairings": ["pizza", "vegetables", "sausage"]
+        "pairings": ["pizza", "vegetables", "pork"]
     },
     {
         "name": "Cave St-Pierre Réserve des Administrateurs Pinot Noir 2020",
@@ -192,7 +196,7 @@ const whiteWines = [
         "organic": false,
         "sugar": "low",
         "price": 24.05,
-        "pairings": ["ham", "cheese"]
+        "pairings": ["pork", "cheese"]
     },
     {
         "name": "Cave de Roquebrun Saint-Chinian Les Fiefs d'Aupenac 2020",

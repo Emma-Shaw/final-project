@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 
-app.get("/hello-world", (req, res) => {
-    res.status(200).json({ status: 200, message: 'Hello World' })
-})
+const { allRedWines, allWhiteWines } = require("./handlers");
+
+// REST Endpoints
+app.get("/wines/red", allRedWines) // Fetch red wine data
+app.get("/wines/white", allWhiteWines) // Fetch white wine data
 
 app.get("*", (req, res) => {
     res.status(404).json({
