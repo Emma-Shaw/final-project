@@ -21,7 +21,7 @@ const OurPurpose = () => {
                     Do you find yourself struggling to come up with a new menu every time?
                 </PurposeText>
                 <PurposeText>Don't even get us started on having to find the perfect wine to complement your meal...</PurposeText>
-                <PurposeText>As a result, Happy Hour was created to solve this dilemma once and for all!</PurposeText>
+                <PurposeText>As a result, Happy Hour was created to solve this issue once and for all!</PurposeText>
                 <PurposeText>
                     By navigating to our <CreateMenu to="/create-menu">Create Menu</CreateMenu> page, you will be able to 
                     automatically generate a delicious three course menu - including an appetizer, a main dish and a dessert - 

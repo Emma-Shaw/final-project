@@ -4,8 +4,8 @@ import spices from "../assets/spices.jpg";
 const Profile = () => {
     return (
         <Wrapper>
+            <Title>Profile</Title>
             <ProfileInfo>
-                <Title>Profile</Title>
                 <ProfileImg src={spices} />
                 <ContactInfo>
                     <Info>Emma Shaw</Info>
@@ -23,6 +23,8 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
+    margin: 20px;
+    align-self: center;
 `;
 
 const ProfileInfo = styled.div`
@@ -41,7 +43,6 @@ const ContactInfo = styled.div`
 const ProfileImg = styled.img`
     width: 250px;
     height: 250px;
-    border-radius: 50%;
 `;
 
 const Info = styled.h3`
