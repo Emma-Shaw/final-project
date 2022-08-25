@@ -1,11 +1,16 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const morgan = require("morgan");
+const app = express();
 
 const { allRedWines, allWhiteWines } = require("./wineHandlers");
 
 const { allRecipes, singleRecipe } = require("./recipeHandlers");
 
 const { allUsers, singleUser, createNewUser, userMenu } = require("./userHandlers");
+
+app.use(morgan("tiny"))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 // 1. Wines
 app.get("/wines/red", allRedWines) // Fetch all red wines data

@@ -11,6 +11,13 @@ const UserAuthentication = () => {
     const [userGivenName, setUserGivenName] = useState();
     const [userSurname, setUserSurname] = useState();
 
+    // useEffect(() => {
+    //     console.log("Given Name", userGivenName);
+    //     console.log("Surname", userSurname);
+    //     console.log("Email", userEmail);
+    //     console.log("Password", userPassword);
+    // }, [userGivenName, userSurname, userEmail, userPassword]);
+
     // Navigate to the home page once the user is signed in. Re-set the create account state to false.
     const home = useNavigate();
     const goToHome = () => {
@@ -19,7 +26,7 @@ const UserAuthentication = () => {
     };
 
     const createNewUser = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         fetch("/users/create-user", {
             method: "POST",
             headers: {
@@ -32,13 +39,9 @@ const UserAuthentication = () => {
                 password: userPassword
             })
         })
-        .then(res => {
-            if (res?.ok) {
-                return res.json();
-            }
-        })
+        .then(res => res.json())
         .then(data => {
-            console.log("Data :", data.data) // to store user data in context (later on)
+            console.log("Data :", data) // to store user data in context (later on)
             goToHome(); // redirect to homepage once user has signed up
         })
         .catch((err) => {

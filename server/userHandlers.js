@@ -54,7 +54,6 @@ const createNewUser = async (req, res) => {
         const db = client.db(dbName);
 
         const newUser = {
-            _id: newUserId,
             givenName: givenName,
             surname: surname,
             email: email,
@@ -89,4 +88,4 @@ const userMenu = async (req, res) => {
     // client.close();
 };
 
-module.exports = { allUsers,singleUser, createNewUser, userMenu };
+module.exports = { allUsers, singleUser, createNewUser, userMenu };
