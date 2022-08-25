@@ -48,6 +48,7 @@ const singleUser = async (req, res) => {
 const createNewUser = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
     const { givenName, surname, email, password } = req.body;
+    let clientExistsAlready = false;
     try {
         await client.connect();
 
@@ -60,11 +61,15 @@ const createNewUser = async (req, res) => {
             password: password,
         };
 
-        // To add - functionality to check if user has already signed-up with same email before processing sign-up.
+        const checkForUser = await db.collection("users").findOne({ email: userEmail });
 
-        const addNewUser = await db.collection("users").insertOne(newUser);
+        if (checkForUser) {
+            clientExistsAlready = true;
+        } else {
+            await db.collection("users").insertOne(newUser);
+        };
 
-        addNewUser
+        clientExistsAlready === false
         ? res.status(201).json({ status: 201, data: newUser, message: "User has successfully signed-up." })
         : res.status(500).json({ status: 500, data: newUser, message: "Error - Something went wrong." })
     } catch (err) {
