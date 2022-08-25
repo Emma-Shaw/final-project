@@ -65,7 +65,7 @@ const createNewUser = async (req, res) => {
         const addNewUser = await db.collection("users").insertOne(newUser);
 
         addNewUser
-        ? res.status(200).json({ status: 200, data: newUser, message: "User has successfully signed-up." })
+        ? res.status(201).json({ status: 201, data: newUser, message: "User has successfully signed-up." })
         : res.status(500).json({ status: 500, data: newUser, message: "Error - Something went wrong." })
     } catch (err) {
         console.log("Error:", err);
