@@ -61,7 +61,7 @@ const createNewUser = async (req, res) => {
             password: password,
         };
 
-        const checkForUser = await db.collection("users").findOne({ email: userEmail });
+        const checkForUser = await db.collection("users").findOne({ email: email });
 
         if (checkForUser) {
             clientExistsAlready = true;

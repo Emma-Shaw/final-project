@@ -8,7 +8,8 @@ const UserAuthentication = () => {
     const [createAccount, setCreateAccount] = useState(false);
     const [userDoesntExists, setUserDoesntExists] = useState(false);
     const [userPasswordDoesntMatch, setUserPasswordDoesntMatch] = useState(false);
-    const [fillOutAllFields, setFillOutAllFields] = useState();
+    const [fillOutAllFields, setFillOutAllFields] = useState(false);
+    const [userAlreadyExists, setUserAlreadyExists] = useState(false);
     const [userEmail, setUserEmail] = useState();
     const [userPassword, setUserPassword] = useState();
     const [userGivenName, setUserGivenName] = useState();
@@ -29,8 +30,10 @@ const UserAuthentication = () => {
         setCreateAccount(false);
     };
 
-    // Functionality: Check that all of the fields are filled out before creating a new user.
+    // Functionality: Check that all of the fields are filled out and that the user doesn't already exist before creating a new user.
     const createNewUser = (e) => {
+        setFillOutAllFields(false);
+        setUserAlreadyExists(false);
         e.preventDefault()
         if (!userEmail || !userPassword || !userGivenName || !userSurname) {
             setFillOutAllFields(true);
@@ -50,8 +53,12 @@ const UserAuthentication = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log("Data :", data) // to store user data in context (later on)
-                goToHome(); // redirect to homepage once user has signed up
+                if (data.status !== 201) {
+                    setUserAlreadyExists(true);
+                } else {
+                    setUserAlreadyExists(false);
+                    goToHome(); // redirect to homepage once user has signed up
+                }
             })
             .catch((err) => {
                 console.log("Error :", err);
@@ -112,6 +119,8 @@ const UserAuthentication = () => {
                 </UserInputs>
                 {fillOutAllFields === true &&
                 <Statement style={{ color: "var(--color-bright-red)" }} >Please fill out all of the required fields.</Statement>}
+                {userAlreadyExists === true &&
+                <Statement style={{ color: "var(--color-bright-red)" }} >There is already an account linked to this email. Please use a different one.</Statement>}
                 <Statement>By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.</Statement>
                 <UserActionBtn onClick={ createNewUser }>Sign-up</UserActionBtn>
                 <UserActionBtn onClick={ returnLogin }>Return</UserActionBtn>
