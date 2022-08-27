@@ -41,6 +41,7 @@ const UserAuthentication = () => {
         setUserAlreadyExists(false);
         e.preventDefault()
         if (!userEmail || !userPassword || !userGivenName || !userSurname) {
+            setLoader(false);
             setFillOutAllFields(true);
         } else {
             setFillOutAllFields(false);
@@ -59,12 +60,13 @@ const UserAuthentication = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.status !== 201) {
+                    setLoader(false);
                     setUserAlreadyExists(true);
                 } else {
+                    setLoader(false);
                     setUserAlreadyExists(false);
                     goToHome(); // redirect to homepage once user has signed up
                 }
-                setLoader(false);
             })
             .catch((err) => {
                 console.log("Error :", err);
@@ -85,12 +87,15 @@ const UserAuthentication = () => {
         .then(data => {
             if (data.status !== 200) {
                 setUserDoesntExists(true);
+                setLoader(false);
             } else if (data?.data?.password !== userPassword) {
                 setUserDoesntExists(false);
                 setUserPasswordDoesntMatch(true);
+                setLoader(false);
             } else {
                 setUserDoesntExists(false);
                 setUserPasswordDoesntMatch(false);
+                setLoader(false);
                 goToHome(); // redirect to homepage once user has signed up
             }
             setLoader(false);
@@ -120,12 +125,13 @@ const UserAuthentication = () => {
             </Login>}
             {createAccount === true && <SignUp>
                 <Title>Sign-up</Title>
-                <UserInputs>
+                {loader === true && <UserInputs><Loader /></UserInputs>}
+                {loader == false && <UserInputs>
                     <FormInput type="text" name="userGivenName" placeholder="Given name" onChange={(e) => {setUserGivenName((e.target.value).toLowerCase())}} />
                     <FormInput type="text" name="userSurname" placeholder="Surname" onChange={(e) => {setUserSurname((e.target.value).toLowerCase())}} />
                     <FormInput type="text" name="userEmail" placeholder="Email" onChange={(e) => {setUserEmail((e.target.value).toLowerCase())}} />
                     <FormInput type="password" name="userPassword" placeholder="Password" onChange={(e) => {setUserPassword((e.target.value).toLowerCase())}} />
-                </UserInputs>
+                </UserInputs>}
                 {fillOutAllFields === true &&
                 <Statement style={{ color: "var(--color-bright-red)" }} >Please fill out all of the required fields.</Statement>}
                 {userAlreadyExists === true &&
