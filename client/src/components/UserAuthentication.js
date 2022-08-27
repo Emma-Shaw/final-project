@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/happy_hour_logo.png";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 const UserAuthentication = () => {
 
+    const [loader, setLoader] = useState(false);
     const [createAccount, setCreateAccount] = useState(false);
     const [userDoesntExists, setUserDoesntExists] = useState(false);
     const [userPasswordDoesntMatch, setUserPasswordDoesntMatch] = useState(false);
@@ -18,8 +20,10 @@ const UserAuthentication = () => {
     // Navigate to the home page once the user is signed in. Re-set the create account state to false.
     const home = useNavigate();
     const goToHome = () => {
+        setLoader(true);
         home("/home");
         setCreateAccount(false);
+        setLoader(false);
     };
 
     const setCreate = () => {
@@ -32,6 +36,7 @@ const UserAuthentication = () => {
 
     // Functionality: Check that all of the fields are filled out and that the user doesn't already exist before creating a new user.
     const createNewUser = (e) => {
+        setLoader(true);
         setFillOutAllFields(false);
         setUserAlreadyExists(false);
         e.preventDefault()
@@ -59,6 +64,7 @@ const UserAuthentication = () => {
                     setUserAlreadyExists(false);
                     goToHome(); // redirect to homepage once user has signed up
                 }
+                setLoader(false);
             })
             .catch((err) => {
                 console.log("Error :", err);
@@ -68,6 +74,7 @@ const UserAuthentication = () => {
 
     // Functionality: Check that the user exists and that the passwords match before logging in.
     const locateUser = (e) => {
+        setLoader(true);
         setUserDoesntExists(false);
         setUserPasswordDoesntMatch(false);
         e.preventDefault();
@@ -86,6 +93,7 @@ const UserAuthentication = () => {
                 setUserPasswordDoesntMatch(false);
                 goToHome(); // redirect to homepage once user has signed up
             }
+            setLoader(false);
         })
         .catch((err) => {
             console.log("Error :", err);
@@ -97,10 +105,11 @@ const UserAuthentication = () => {
             <Logo src={logo} />
             {createAccount === false && <Login>
             <Title>Login</Title>
-            <UserInputs>
+            {loader === true && <UserInputs><Loader /></UserInputs>}
+            {loader == false && <UserInputs>
                 <FormInput type="text" placeholder="Email" onChange={(e) => {setUserEmail((e.target.value).toLowerCase())}} />
                 <FormInput type="password" placeholder="Password" onChange={(e) => {setUserPassword((e.target.value).toLowerCase())}} />
-            </UserInputs>
+            </UserInputs>}
             {userDoesntExists === true && 
             <Statement style={{ color: "var(--color-bright-red)" }}>There are no accounts linked to this email address.</Statement>}
             {userPasswordDoesntMatch === true && 
