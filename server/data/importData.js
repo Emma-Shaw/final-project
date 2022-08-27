@@ -12,6 +12,7 @@ const options = {
 const dbName = "final_project_happy_hour";
 
 const { redWines, whiteWines } = require("./wines");
+const { starters, mains, desserts } = require("./recipes");
 
 const batchImportWines = async () => {
     const client = new MongoClient(MONGO_URI, options);
@@ -37,7 +38,38 @@ const batchImportWines = async () => {
         console.log("Error:", err);
     }
     client.close();
-}
+};
 
-batchImportWines();
+// batchImportWines();
+
+const batchImportRecipes = async () => {
+    const client = new MongoClient(MONGO_URI, options);
+    try {
+        await client.connect();
+
+        const db = client.db(dbName);
+
+        const addStarters = await db.collection("starters").insertMany(starters);
+        const addMains = await db.collection("mains").insertMany(mains);
+        const addDesserts = await db.collection("desserts").insertMany(desserts);
+
+        const startersData = await db.collection("starters").find().toArray();
+        const mainsData =await db.collection("mains").find().toArray();
+        const dessertsData =await db.collection("desserts").find().toArray();
+
+        if (startersData.length > 0 && mainsData.length > 0 && dessertsData.length > 0) {
+            console.log("Starters :", addStarters);
+            console.log("Mains :", addMains);
+            console.log("Desserts :", addDesserts);
+            console.log("Success")
+        } else {
+            console.log("Something went wrong")
+        }
+    } catch (err) {
+        console.log("Error:", err);
+    }
+    client.close();
+};
+
+// batchImportRecipes();
 
