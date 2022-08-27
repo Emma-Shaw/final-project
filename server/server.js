@@ -4,7 +4,7 @@ const app = express();
 
 const { allRedWines, allWhiteWines } = require("./wineHandlers");
 
-const { allRecipes, singleRecipe } = require("./recipeHandlers");
+const { allStarters, allMains, allDesserts } = require("./recipeHandlers");
 
 const { allUsers, singleUser, createNewUser, userMenu } = require("./userHandlers");
 
@@ -17,12 +17,13 @@ app.get("/wines/red", allRedWines) // Fetch all red wines data
 app.get("/wines/white", allWhiteWines) // Fetch all white wines data
 
 // 2. Recipes
-app.get("/recipes", allRecipes) // Fetch all recipes data
-app.get("/recipes/:recipeId", singleRecipe) // Fetch specific recipe by recipeId
+app.get("/recipes/starters", allStarters) // Fetch all starters recipes data
+app.get("/recipes/mains", allMains) // Fetch all mains recipes data
+app.get("/recipes/desserts", allDesserts) // Fetch all desserts recipes data
 
 // 3. Users
 app.get("/users", allUsers) // Fetch all users
-app.get("/users/:userEmail", singleUser) // Fetch specific user based on userId
+app.get("/users/:emailId", singleUser) // Fetch specific user based on userId
 app.post("/users/create-user", createNewUser) // Create a new user when user signs-up
 
 // 4. Menus
