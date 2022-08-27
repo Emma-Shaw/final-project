@@ -11,6 +11,8 @@ const options = {
 
 const dbName = "final_project_happy_hour";
 
+const { starters, mains, desserts } = require("./data/recipes");
+
 const allRecipes = async (req, res) => {
     // const client = new MongoClient(MONGO_URI, options);
     // try {
