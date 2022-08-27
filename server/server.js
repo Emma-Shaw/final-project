@@ -23,7 +23,7 @@ app.get("/recipes/desserts", allDesserts) // Fetch all desserts recipes data
 
 // 3. Users
 app.get("/users", allUsers) // Fetch all users
-app.get("/users/:emailId", singleUser) // Fetch specific user based on userId
+app.get("/users/:userEmail", singleUser) // Fetch specific user based on userId
 app.post("/users/create-user", createNewUser) // Create a new user when user signs-up
 
 // 4. Menus
