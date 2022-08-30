@@ -25,7 +25,6 @@ const App = () => {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/create-menu" element={<CreateMenu />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
-          <Route path="/welcome" element={<Welcome />}></Route>
           <Route path="/purpose" element={<OurPurpose />}></Route>
         </Routes>
       </Wrapper>

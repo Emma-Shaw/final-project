@@ -3,14 +3,18 @@ const morgan = require("morgan");
 const app = express();
 
 const { allRedWines, allWhiteWines } = require("./wineHandlers");
-
 const { allStarters, allMains, allDesserts } = require("./recipeHandlers");
+const { allUsers, singleUser, createNewUser, userMenu, auth, config, configAuth } = require("./userHandlers");
 
-const { allUsers, singleUser, createNewUser, userMenu } = require("./userHandlers");
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
 
 app.use(morgan("tiny"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', configAuth);
 
 // 1. Wines
 app.get("/wines/red", allRedWines) // Fetch all red wines data

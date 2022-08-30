@@ -1,3 +1,15 @@
+// Configure Auth0
+const { auth } = require('express-openid-connect');
+
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: 'a long, randomly-generated string stored in env',
+    baseURL: 'http://localhost:8000',
+    clientID: 'gme5aH3b6hBXoeqIx1824kKS7wkDLlEB',
+    issuerBaseURL: 'https://dev-41dcx13f.us.auth0.com'
+};
+
 // Configure the Mongo Client
 const { MongoClient } = require("mongodb");
 
@@ -10,6 +22,10 @@ const options = {
 };
 
 const dbName = "final_project_happy_hour";
+
+const configAuth = (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+};
 
 const allUsers = async (req, res) => {
     // const client = new MongoClient(MONGO_URI, options);
@@ -93,4 +109,4 @@ const userMenu = async (req, res) => {
     // client.close();
 };
 
-module.exports = { allUsers, singleUser, createNewUser, userMenu };
+module.exports = { allUsers, singleUser, createNewUser, userMenu, auth, config, configAuth };
