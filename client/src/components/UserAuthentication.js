@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/happy_hour_logo.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loader from "./Loader";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
 const UserAuthentication = () => {
+
+    const {
+        actions: { loginUser }
+    } = useContext(UserContext);
 
     const [loader, setLoader] = useState(false);
     const [createAccount, setCreateAccount] = useState(false);
@@ -21,6 +27,10 @@ const UserAuthentication = () => {
     const home = useNavigate();
     const goToHome = () => {
         setLoader(true);
+        const getUserData = JSON.parse(sessionStorage.getItem("user"));
+        if (getUserData) {
+            loginUser(getUserData);
+        };
         home("/home");
         setCreateAccount(false);
         setLoader(false);
