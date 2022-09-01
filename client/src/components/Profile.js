@@ -1,17 +1,24 @@
 import styled from "styled-components";
-import spices from "../assets/spices.jpg";
+import dessert from "../assets/dessert.jpg";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
 const Profile = () => {
+
+    const {
+        state: { loggedIn, currentGivenName, currentSurname, currentEmail },
+    } = useContext(UserContext);
+
     return (
         <Wrapper>
             <Title>Profile</Title>
-            <ProfileInfo>
-                <ProfileImg src={spices} />
+            {loggedIn === true && <ProfileInfo>
+                <ProfileImg src={dessert} />
                 <ContactInfo>
-                    <Info>Emma Shaw</Info>
-                    <Info>emma@shaw.com</Info>
+                    {currentGivenName && currentSurname && <Info>{currentGivenName} {currentSurname}</Info>}
+                    {currentEmail && <Info>{currentEmail}</Info>}
                 </ContactInfo>
-            </ProfileInfo>
+            </ProfileInfo>}
         </Wrapper>
     );
 };
@@ -43,9 +50,10 @@ const ContactInfo = styled.div`
 const ProfileImg = styled.img`
     width: 250px;
     height: 250px;
+    border-radius: 50%;
 `;
 
-const Info = styled.h3`
+const Info = styled.p`
     padding-bottom: 5px;
 `;
 
