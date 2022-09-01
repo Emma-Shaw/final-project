@@ -3,8 +3,16 @@ import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
 import { useNavigate } from "react-router-dom";
 import { ImMenu, ImSpoonKnife } from "react-icons/im";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
 const Header = () => {
+
+    const {
+        state: { loggedIn, currentGivenName },
+    } = useContext(UserContext);
+
+    const upperCaseName = currentGivenName?.charAt(0).toUpperCase() + currentGivenName?.slice(1);
 
     const welcome = useNavigate();
     const goToWelcome = () => {
@@ -13,25 +21,29 @@ const Header = () => {
 
     return (
         <>
-        {/* to update - replace with user name variable */}
-        <FirstBorder>Welcome, Emma &nbsp; <ImSpoonKnife /></FirstBorder>
-        <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
-            <Wrapper>
-                <LogoLink to="/home"><Logo src={logo} /></LogoLink>
-                <NavigationBtns>
-                <NavigationBar>
-                    <NavUl>
-                        <NavLi><NavLink to="/purpose">Our purpose</NavLink></NavLi>
-                        <NavLi><NavLink to="/menu">Menu</NavLink></NavLi>
-                        <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
-                    </NavUl>
-                </NavigationBar>
-                <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
-                </NavigationBtns>
-            </Wrapper>
+            {loggedIn === true && <Container>
+                {upperCaseName && <FirstBorder>Welcome, {upperCaseName} &nbsp; <ImSpoonKnife /></FirstBorder>}
+                <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
+                <Wrapper>
+                    <LogoLink to="/home"><Logo src={logo} /></LogoLink>
+                    <NavigationBtns>
+                    <NavigationBar>
+                        <NavUl>
+                            <NavLi><NavLink to="/purpose">Our purpose</NavLink></NavLi>
+                            <NavLi><NavLink to="/menu">Menu</NavLink></NavLi>
+                            <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
+                        </NavUl>
+                    </NavigationBar>
+                    <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
+                    </NavigationBtns>
+                </Wrapper>
+            </Container>}
         </>
     );
 };
+
+const Container = styled.div`
+`;
 
 const FirstBorder = styled.div`
     display: flex;

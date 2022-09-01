@@ -17,7 +17,8 @@ const App = () => {
     <BrowserRouter>
     <GlobalStyle />
     <Wrapper>
-    {window.location.pathname !== "/" && window.location.pathname !== "/authentication" && <Header /> }
+    {/* {window.location.pathname !== "/" && window.location.pathname !== "/authentication" && <Header /> } */}
+    <Header />
         <Routes>
           <Route exact path="/" element={<Welcome />}></Route>
           <Route exact path="/authentication" element={<UserAuthentication />}></Route>
@@ -28,7 +29,8 @@ const App = () => {
           <Route path="/purpose" element={<OurPurpose />}></Route>
         </Routes>
       </Wrapper>
-      {window.location.pathname !== "/" && window.location.pathname !== "/authentication" && <Footer />}
+      <Footer />
+      {/* {window.location.pathname !== "/" && window.location.pathname !== "/authentication" && <Footer /> } */}
     </BrowserRouter>
   );
 };

@@ -2,26 +2,38 @@ import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
 import banner from "../assets/cheers_longest_version.png";
 import { ImInstagram, ImFacebook2, ImTwitter, ImPinterest2  } from "react-icons/im";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
 const Footer = () => {
+
+    const {
+        state: { loggedIn },
+    } = useContext(UserContext);
+
     return (
         <>
-            <Banner src={banner} />
-            <Wrapper>
-                <License>2022 @ Happy Hour Ltd. All rights reserved.</License>
-                <Icons>
-                    <IconsList>
-                        <IconListItem><ImInstagram /></IconListItem>
-                        <IconListItem><ImFacebook2 /></IconListItem>
-                        <IconListItem><ImTwitter /></IconListItem>
-                        <IconListItem><ImPinterest2 /></IconListItem>
-                    </IconsList>
-                </Icons>
-                <Logo><LogoImg src={logo} /></Logo>
-            </Wrapper>
+            {loggedIn === true && <Container>
+                <Banner src={banner} />
+                <Wrapper>
+                    <License>2022 @ Happy Hour Ltd. All rights reserved.</License>
+                    <Icons>
+                        <IconsList>
+                            <IconListItem><ImInstagram /></IconListItem>
+                            <IconListItem><ImFacebook2 /></IconListItem>
+                            <IconListItem><ImTwitter /></IconListItem>
+                            <IconListItem><ImPinterest2 /></IconListItem>
+                        </IconsList>
+                    </Icons>
+                    <Logo><LogoImg src={logo} /></Logo>
+                </Wrapper>
+            </Container>}
         </>
     );
 };
+
+const Container = styled.div`
+`;
 
 const Wrapper = styled.div`
     display: flex;

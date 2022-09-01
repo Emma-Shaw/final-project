@@ -65,6 +65,7 @@ const UserAuthentication = () => {
                 } else {
                     setLoader(false);
                     setUserAlreadyExists(false);
+                    sessionStorage.setItem("user", JSON.stringify(data.data));
                     goToHome(); // redirect to homepage once user has signed up
                 }
             })
@@ -96,6 +97,7 @@ const UserAuthentication = () => {
                 setUserDoesntExists(false);
                 setUserPasswordDoesntMatch(false);
                 setLoader(false);
+                sessionStorage.setItem("user", JSON.stringify(data.data));
                 goToHome(); // redirect to homepage once user has signed up
             }
             setLoader(false);
