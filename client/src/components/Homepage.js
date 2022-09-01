@@ -9,8 +9,7 @@ import { useEffect, useContext } from "react";
 const Homepage = () => {
 
     const {
-        state: { loggedIn, currentGivenName, currentSurname, currentEmail },
-        actions: { loginUser, logoutUser }
+        actions: { loginUser }
     } = useContext(UserContext);
 
     const purpose = useNavigate();

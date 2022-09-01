@@ -10,12 +10,14 @@ const Header = () => {
 
     const {
         state: { loggedIn, currentGivenName },
+        actions: { logoutUser },
     } = useContext(UserContext);
 
     const upperCaseName = currentGivenName?.charAt(0).toUpperCase() + currentGivenName?.slice(1);
 
     const welcome = useNavigate();
     const goToWelcome = () => {
+        logoutUser();
         welcome("/");
     };
 
