@@ -1,13 +1,3 @@
-// Configure Auth0
-const { auth } = require("express-oauth2-jwt-bearer");
-
-// Authorization middleware. When used, the Access Token must
-// exist and be verified against the Auth0 JSON Web Key Set.
-const checkJwt = auth({
-    audience: 'Final_Project_Happy_Hour',
-    issuerBaseURL: `https://dev-41dcx13f.us.auth0.com/`,
-});
-
 // Configure the Mongo Client
 const { MongoClient } = require("mongodb");
 
@@ -103,4 +93,4 @@ const userMenu = async (req, res) => {
     // client.close();
 };
 
-module.exports = { allUsers, singleUser, createNewUser, userMenu, auth, config, configAuth };
+module.exports = { allUsers, singleUser, createNewUser, userMenu };

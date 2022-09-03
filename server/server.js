@@ -2,19 +2,37 @@ const express = require('express');
 const morgan = require("morgan");
 const app = express();
 
+// Configure Auth0
+const { auth } = require("express-oauth2-jwt-bearer");
+
+// Authorization middleware. When used, the Access Token must
+// exist and be verified against the Auth0 JSON Web Key Set.
+const checkJwt = auth({
+    audience: 'Final_Project_Happy_Hour',
+    issuerBaseURL: `https://dev-41dcx13f.us.auth0.com/`,
+});
+
 const { allRedWines, allWhiteWines } = require("./wineHandlers");
 const { allStarters, allMains, allDesserts } = require("./recipeHandlers");
-const { allUsers, singleUser, createNewUser, userMenu, auth, config, configAuth } = require("./userHandlers");
-
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+const { allUsers, singleUser, createNewUser, userMenu, public, private  } = require("./userHandlers");
 
 app.use(morgan("tiny"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// req.isAuthenticated is provided from the auth router
-app.get('/', configAuth);
+// This route doesn't need authentication
+app.get("/api/public", ((req, res) => {
+    res.json({
+        message: "Hello from a public endpoint! You don't need to be authenticated to see this."
+    })
+}));
+
+// This route needs authentication
+app.get("/api/private", checkJwt, ((req, res) => {
+    res.json({
+        message: "Hello from a private endpoint! You need to be authenticated to see this."
+    })
+}));
 
 // 1. Wines
 app.get("/wines/red", allRedWines) // Fetch all red wines data
