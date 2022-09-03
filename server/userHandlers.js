@@ -1,19 +1,12 @@
 // Configure Auth0
-// const { auth } = require('express-openid-connect');
 const { auth } = require("express-oauth2-jwt-bearer");
 
-// const config = {
-//     authRequired: false,
-//     auth0Logout: true,
-//     secret: 'a long, randomly-generated string stored in env',
-//     baseURL: 'http://localhost:8000',
-//     clientID: 'gme5aH3b6hBXoeqIx1824kKS7wkDLlEB',
-//     issuerBaseURL: 'https://dev-41dcx13f.us.auth0.com'
-// };
-
-// const configAuth = (req, res) => {
-//     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-// };
+// Authorization middleware. When used, the Access Token must
+// exist and be verified against the Auth0 JSON Web Key Set.
+const checkJwt = auth({
+    audience: 'Final_Project_Happy_Hour',
+    issuerBaseURL: `https://dev-41dcx13f.us.auth0.com/`,
+});
 
 // Configure the Mongo Client
 const { MongoClient } = require("mongodb");
