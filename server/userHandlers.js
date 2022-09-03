@@ -1,19 +1,19 @@
 // Configure Auth0
 // const { auth } = require('express-openid-connect');
-// const { auth } = require("express-oauth2-jwt-bearer");
+const { auth } = require("express-oauth2-jwt-bearer");
 
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: 'a long, randomly-generated string stored in env',
-    baseURL: 'http://localhost:8000',
-    clientID: 'gme5aH3b6hBXoeqIx1824kKS7wkDLlEB',
-    issuerBaseURL: 'https://dev-41dcx13f.us.auth0.com'
-};
+// const config = {
+//     authRequired: false,
+//     auth0Logout: true,
+//     secret: 'a long, randomly-generated string stored in env',
+//     baseURL: 'http://localhost:8000',
+//     clientID: 'gme5aH3b6hBXoeqIx1824kKS7wkDLlEB',
+//     issuerBaseURL: 'https://dev-41dcx13f.us.auth0.com'
+// };
 
-const configAuth = (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-};
+// const configAuth = (req, res) => {
+//     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// };
 
 // Configure the Mongo Client
 const { MongoClient } = require("mongodb");
