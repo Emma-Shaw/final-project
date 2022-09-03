@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyles"
-import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -23,29 +23,28 @@ const App = () => {
   console.log("Logged in", loggedIn);
 
   return (
-    <BrowserRouter>
-    <GlobalStyle />
-    <Wrapper>
-    <Header />
-        <Routes>
-          <Route exact path="/" element={<Welcome />}></Route>
-          <Route exact path="/authentication" element={<UserAuthentication />}></Route>
-          <Route path="/home" element={loggedIn === true ? <Homepage /> : <ErrorPage />}></Route>
-          <Route path="/profile" element={loggedIn === true ? <Profile /> : <ErrorPage />}></Route>
-          <Route path="/create-menu" element={loggedIn === true ? <CreateMenu /> : <ErrorPage />}></Route>
-          <Route path="/menu" element={loggedIn === true ? <Menu /> : <ErrorPage />}></Route>
-          <Route path="/purpose" element={loggedIn === true ? <OurPurpose /> : <ErrorPage />}></Route>
-        </Routes>
-      </Wrapper>
-      <Footer />
-    </BrowserRouter>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+      <Header />
+          <Routes>
+            <Route exact path="/" element={<Welcome />}></Route>
+            <Route exact path="/authentication" element={<UserAuthentication />}></Route>
+            <Route path="/home" element={loggedIn === true ? <Homepage /> : <ErrorPage />}></Route>
+            <Route path="/profile" element={loggedIn === true ? <Profile /> : <ErrorPage />}></Route>
+            <Route path="/create-menu" element={loggedIn === true ? <CreateMenu /> : <ErrorPage />}></Route>
+            <Route path="/menu" element={loggedIn === true ? <Menu /> : <ErrorPage />}></Route>
+            <Route path="/purpose" element={loggedIn === true ? <OurPurpose /> : <ErrorPage />}></Route>
+          </Routes>
+        </Wrapper>
+        <Footer />
+      </>
   );
 };
 
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
-  /* margin-bottom: 175px; */
 `;
 
 export default App;

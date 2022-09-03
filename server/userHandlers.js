@@ -1,5 +1,6 @@
 // Configure Auth0
-const { auth } = require('express-openid-connect');
+// const { auth } = require('express-openid-connect');
+// const { auth } = require("express-oauth2-jwt-bearer");
 
 const config = {
     authRequired: false,
@@ -8,6 +9,10 @@ const config = {
     baseURL: 'http://localhost:8000',
     clientID: 'gme5aH3b6hBXoeqIx1824kKS7wkDLlEB',
     issuerBaseURL: 'https://dev-41dcx13f.us.auth0.com'
+};
+
+const configAuth = (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 };
 
 // Configure the Mongo Client
@@ -22,10 +27,6 @@ const options = {
 };
 
 const dbName = "final_project_happy_hour";
-
-const configAuth = (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-};
 
 const allUsers = async (req, res) => {
     // const client = new MongoClient(MONGO_URI, options);
