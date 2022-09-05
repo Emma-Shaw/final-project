@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./components/App";
 import { UserProvider } from './components/UserContext';
+import { RecipesProvider } from './components/RecipesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,9 @@ root.render(
     >
       <BrowserRouter>
         <UserProvider>
-          <App />
+          <RecipesProvider>
+            <App />
+          </RecipesProvider>
         </UserProvider>
       </BrowserRouter>
     </Auth0Provider>

@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { useReducer } from "react";
-import { useEffect } from "react";
 
 export const UserContext = createContext(null);
 
@@ -55,14 +54,6 @@ export const UserProvider = ({ children }) => {
             ...data,
         });
     };
-
-    // useEffect(() => {
-    //     const getUserData = JSON.parse(sessionStorage.getItem("user"));
-
-    //     if (getUserData) {
-    //         loginUser(getUserData);
-    //     }
-    // }, []);
 
     return (
         <UserContext.Provider

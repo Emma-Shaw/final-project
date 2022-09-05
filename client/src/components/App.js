@@ -27,7 +27,7 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
       <Header />
-          <Routes>
+          {/* <Routes>
             <Route exact path="/" element={<Welcome />}></Route>
             <Route exact path="/authentication" element={<UserAuthentication />}></Route>
             <Route path="/home" element={loggedIn === true ? <Homepage /> : <ErrorPage />}></Route>
@@ -35,6 +35,15 @@ const App = () => {
             <Route path="/create-menu" element={loggedIn === true ? <CreateMenu /> : <ErrorPage />}></Route>
             <Route path="/menu" element={loggedIn === true ? <Menu /> : <ErrorPage />}></Route>
             <Route path="/purpose" element={loggedIn === true ? <OurPurpose /> : <ErrorPage />}></Route>
+          </Routes> */}
+          <Routes>
+            <Route exact path="/" element={<Welcome />}></Route>
+            <Route exact path="/authentication" element={<UserAuthentication />}></Route>
+            <Route path="/home" element={<Homepage />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/create-menu" element={<CreateMenu />}></Route>
+            <Route path="/menu" element={<Menu />}></Route>
+            <Route path="/purpose" element={<OurPurpose />}></Route>
           </Routes>
         </Wrapper>
         <Footer />

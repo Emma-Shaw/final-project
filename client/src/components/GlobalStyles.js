@@ -57,7 +57,7 @@ const GlobalStyle = createGlobalStyle`
         content: none;
     }
     p {
-        font-size: 10px;
+        font-size: 15px;
     }
     h1 {
         color: var(--color-cool-navy);

@@ -53,6 +53,7 @@ const Logo = styled.div`
 
 const License = styled.p`
     width: 300px;
+    font-size: 10px;
 `;
 
 const LogoImg = styled.img`

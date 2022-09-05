@@ -8,10 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
 
-    // const {
-    //     actions: { loginUser }
-    // } = useContext(UserContext);
-
     const purpose = useNavigate();
     const goToPurpose = () => {
         purpose("/purpose");
@@ -20,16 +16,7 @@ const Homepage = () => {
     const create = useNavigate();
     const goCreate = () => {
         create("/create-menu");
-        window.location.reload();
     };
-
-    // useEffect(() => {
-    //     const getUserData = JSON.parse(sessionStorage.getItem("user"));
-
-    //     if (getUserData) {
-    //         loginUser(getUserData);
-    //     }
-    // }, []);
 
     return (
         <Wrapper>
