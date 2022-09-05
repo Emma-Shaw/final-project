@@ -3,8 +3,6 @@ import redWinePour from "../assets/red_wine_pour.jpg";
 import friendsCooking from "../assets/friends_cooking.jpg";
 import circle from "../assets/circle_no_bg.png";
 import { useNavigate } from "react-router-dom";
-// import { UserContext } from "./UserContext";
-// import { useEffect, useContext } from "react";
 
 const Homepage = () => {
 
