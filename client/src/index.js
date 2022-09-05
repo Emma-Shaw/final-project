@@ -5,6 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./components/App";
 import { UserProvider } from './components/UserContext';
 import { RecipesProvider } from './components/RecipesContext';
+import { MenuProvider } from './components/MenuContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,9 @@ root.render(
       <BrowserRouter>
         <UserProvider>
           <RecipesProvider>
-            <App />
+            <MenuProvider>
+              <App />
+            </MenuProvider>
           </RecipesProvider>
         </UserProvider>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { RecipesContext } from "./RecipesContext";
+import { MenuContext } from "./MenuContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
@@ -18,15 +19,17 @@ export const CreateMenu = () => {
         setWhiteWines 
     } = useContext(RecipesContext);
 
+    const {
+        setUserStarter,
+        setUserMain,
+        setUserDessert,
+        setUserWine
+    } = useContext(MenuContext);
+
     const [startersSelection, setStartersSelection]  = useState([]);
     const [mainsSelection, setMainsSelection]  = useState([]);
     const [dessertsSelection, setDessertsSelection]  = useState([]);
     const [wineSelection, setWineSelection]  = useState([]);
-
-    const menu = useNavigate();
-    const goToMenu = () => {
-        menu("/menu");
-    };
 
     const filterSeason = (filter) => {
         // Add code to reduce all lists to contain only recipes corresponding to the selected season.
@@ -48,6 +51,15 @@ export const CreateMenu = () => {
         // Option 2: whiteWines
         // Add code to select list of red or white wines based on the selected type.
         // Provide one choice of wine based on selections and pairings.
+    };
+
+    const menu = useNavigate();
+    const goToMenu = () => {
+        setUserStarter(startersSelection);
+        setUserMain(mainsSelection);
+        setUserDessert(dessertsSelection);
+        setUserWine(wineSelection);
+        menu("/menu");
     };
 
     return (
