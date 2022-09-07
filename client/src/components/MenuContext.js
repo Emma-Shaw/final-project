@@ -1,21 +1,23 @@
 import { createContext, useState } from "react";
 
+// TO REMOVE COMPONENT?? NOT SURE IF USEFUL
+
 export const MenuContext = createContext(null);
 export const MenuProvider = ({ children }) => {
-    const [userStarter, setUserStarter] = useState();
-    const [userMain, setUserMain] = useState();
-    const [userDessert, setUserDessert] = useState();
+    const [userSeason, setUserSeason] = useState();
+    const [userAllergens, setUserAllergens] = useState();
+    const [userSweeteness, setUserSweeteness] = useState();
     const [userWine, setUserWine] = useState();
 
     return (
         <MenuContext.Provider
             value={{
-                userStarter,
-                setUserStarter,
-                userMain,
-                setUserMain,
-                userDessert,
-                setUserDessert,
+                userSeason,
+                setUserSeason,
+                userAllergens,
+                setUserAllergens,
+                userSweeteness,
+                setUserSweeteness,
                 userWine,
                 setUserWine
             }}

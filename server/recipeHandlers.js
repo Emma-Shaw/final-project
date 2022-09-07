@@ -65,4 +65,43 @@ const allDesserts = async (req, res) => {
     client.close();
 };
 
-module.exports = { allStarters, allMains, allDesserts };
+const randomStarter = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    try {
+        await client.connect();
+
+        const db = client.db(dbName);
+
+    } catch (err) {
+        console.log("Error:", err);
+    }
+    client.close();
+};
+
+const randomMain = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    try {
+        await client.connect();
+
+        const db = client.db(dbName);
+        
+    } catch (err) {
+        console.log("Error:", err);
+    }
+    client.close();
+};
+
+const randomDessert = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    try {
+        await client.connect();
+
+        const db = client.db(dbName);
+        
+    } catch (err) {
+        console.log("Error:", err);
+    }
+    client.close();
+};
+
+module.exports = { allStarters, allMains, allDesserts, randomStarter, randomMain, randomDessert };

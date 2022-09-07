@@ -20,8 +20,6 @@ const App = () => {
 
   const { state: { loggedIn } } = useContext(UserContext);
 
-  console.log("Logged in", loggedIn);
-
   return (
     <>
       <GlobalStyle />

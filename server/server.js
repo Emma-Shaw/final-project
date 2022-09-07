@@ -12,8 +12,8 @@ const checkJwt = auth({
     issuerBaseURL: `https://dev-41dcx13f.us.auth0.com/`,
 });
 
-const { allRedWines, allWhiteWines } = require("./wineHandlers");
-const { allStarters, allMains, allDesserts } = require("./recipeHandlers");
+const { allRedWines, allWhiteWines, randomWine} = require("./wineHandlers");
+const { allStarters, allMains, allDesserts, randomStarter, randomMain, randomDessert } = require("./recipeHandlers");
 const { allUsers, singleUser, createNewUser, userMenu, public, private  } = require("./userHandlers");
 
 app.use(morgan("tiny"))
@@ -38,10 +38,17 @@ app.get("/api/private", checkJwt, ((req, res) => {
 app.get("/wines/red", allRedWines) // Fetch all red wines data
 app.get("/wines/white", allWhiteWines) // Fetch all white wines data
 
+app.post("/wines", randomWine)
+
 // 2. Recipes
 app.get("/recipes/starters", allStarters) // Fetch all starters recipes data
 app.get("/recipes/mains", allMains) // Fetch all mains recipes data
 app.get("/recipes/desserts", allDesserts) // Fetch all desserts recipes data
+
+app.post("/recipes/starters", randomStarter)
+app.post("/recipes/mains", randomMain)
+app.post("/recipes/desserts", randomDessert)
+
 
 // 3. Users
 app.get("/users", allUsers) // Fetch all users

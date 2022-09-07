@@ -3,62 +3,48 @@ import { RecipesContext } from "./RecipesContext";
 import { MenuContext } from "./MenuContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+import { useEffect } from "react";
 
 export const CreateMenu = () => {
 
     const {                 
         starters,
-        setStarters,
         mains,
-        setMains,
         desserts,
-        setDesserts,
         redWines,
-        setRedWines,
         whiteWines,
-        setWhiteWines 
     } = useContext(RecipesContext);
 
-    const {
-        setUserStarter,
-        setUserMain,
-        setUserDessert,
-        setUserWine
-    } = useContext(MenuContext);
+    const [season, setSeason]  = useState();
+    const [allergens, setAllergens]  = useState([]);
+    const [sweeteness, setSweeteness]  = useState();
+    const [wine, setWine]  = useState();
 
-    const [startersSelection, setStartersSelection]  = useState([]);
-    const [mainsSelection, setMainsSelection]  = useState([]);
-    const [dessertsSelection, setDessertsSelection]  = useState([]);
-    const [wineSelection, setWineSelection]  = useState([]);
+    useEffect(() => {console.log("Allergens =>", starters)}, [starters]);
 
-    const filterSeason = (filter) => {
-        // Add code to reduce all lists to contain only recipes corresponding to the selected season.
-        // Provide list of recipes based on selected season.
+    // Store user's season selection in a useState
+    const filterSeason = (choice) => {
+        setSeason(choice);
     };
 
-    const filterAllergens = (filter) => {
-        // Add code to reduce list of recipes to contain only recipes excluding the selected allergens.
-        // Provide one choice of main and one choice of starter based on selections.
+    // Store user's allergen selection(s) in a useState
+    const filterAllergens = (choice) => {
+        setAllergens(allergens => [...allergens, choice]);
     };
 
-    const filterSweeteness = (filter) => {
-        // Add code to reduce list of dessert recipes to contain only desserts containing requested level of sweeteness.
-        // Provide one choice of dessert based on selections.
+    // Store user's sweeteness selection in a useState
+    const filterSweeteness = (choice) => {
+        setSweeteness(choice);
     };
 
-    const filterWines = (filter) => {
-        // Option 1: redWines
-        // Option 2: whiteWines
-        // Add code to select list of red or white wines based on the selected type.
-        // Provide one choice of wine based on selections and pairings.
+    // Store user's wine selection in a useState
+    const filterWines = (choice) => {
+        setWine(choice);
+        console.log("Season =>", choice)
     };
 
     const menu = useNavigate();
     const goToMenu = () => {
-        setUserStarter(startersSelection);
-        setUserMain(mainsSelection);
-        setUserDessert(dessertsSelection);
-        setUserWine(wineSelection);
         menu("/menu");
     };
 
@@ -70,34 +56,34 @@ export const CreateMenu = () => {
                 <Prompt>
                     <Question>1. First, choose a season:</Question>
                     <Answers>
-                        <Answer onClick={filterSeason}>Winter</Answer>
-                        <Answer onClick={filterSeason}>Spring</Answer>
-                        <Answer onClick={filterSeason}>Summer</Answer>
-                        <Answer onClick={filterSeason}>Fall</Answer>
+                        <Answer onClick={() => filterSeason("winter")}>Winter</Answer>
+                        <Answer onClick={() => filterSeason("spring")}>Spring</Answer>
+                        <Answer onClick={() => filterSeason("summer")}>Summer</Answer>
+                        <Answer onClick={() => filterSeason("fall")}>Fall</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>
                     <Question>2. Second, specify any allergens that may apply:</Question>
                     <Answers>
-                        <Answer onClick={filterAllergens}>Dairy</Answer>
-                        <Answer onClick={filterAllergens}>Gluten</Answer>
-                        <Answer onClick={filterAllergens}>Shellfish</Answer>
-                        <Answer onClick={filterAllergens}>Nuts</Answer>
+                        <Answer onClick={() => filterAllergens("dairy")}>Dairy</Answer>
+                        <Answer onClick={() => filterAllergens("gluten")}>Gluten</Answer>
+                        <Answer onClick={() => filterAllergens("shellfish")}>Shellfish</Answer>
+                        <Answer onClick={() => filterAllergens("nuts")}>Nuts</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>
                     <Question>3. Third, choose a type of wine:</Question>
                     <Answers>
-                        <Answer onClick={filterWines}>Red</Answer>
-                        <Answer onClick={filterWines}>White</Answer>
+                        <Answer onClick={() => filterWines("redWines")}>Red</Answer>
+                        <Answer onClick={() => filterWines("whiteWines")}>White</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>
                     <Question>4. Finally, select your preferred dessert sweeteness:</Question>
                     <Answers>
-                        <Answer onClick={filterSweeteness}>Low</Answer>
-                        <Answer onClick={filterSweeteness}>Medium</Answer>
-                        <Answer onClick={filterSweeteness}>High</Answer>
+                        <Answer onClick={() => filterSweeteness("low")}>Low</Answer>
+                        <Answer onClick={() => filterSweeteness("medium")}>Medium</Answer>
+                        <Answer onClick={() => filterSweeteness("high")}>High</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>
@@ -134,6 +120,7 @@ const Prompts = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
 `;
 
 const Prompt = styled.div`
