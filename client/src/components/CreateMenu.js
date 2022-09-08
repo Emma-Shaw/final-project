@@ -17,7 +17,7 @@ export const CreateMenu = () => {
 
     const [season, setSeason]  = useState();
     const [allergens, setAllergens]  = useState([]);
-    const [sweeteness, setSweeteness]  = useState();
+    const [sweetness, setSweetness]  = useState();
     const [wine, setWine]  = useState();
 
     // Store user's season selection in a useState
@@ -31,8 +31,8 @@ export const CreateMenu = () => {
     };
 
     // Store user's sweeteness selection in a useState
-    const filterSweeteness = (choice) => {
-        setSweeteness(choice);
+    const filterSweetness = (choice) => {
+        setSweetness(choice);
     };
 
     // Store user's wine selection in a useState
@@ -51,7 +51,7 @@ export const CreateMenu = () => {
             body: JSON.stringify({
                 season: season,
                 allergens: allergens,
-                sweeteness: sweeteness,
+                sweetness: sweetness,
             })
         })
         .then((res) => {
@@ -97,11 +97,11 @@ export const CreateMenu = () => {
                     </Answers>
                 </Prompt>
                 <Prompt>
-                    <Question>4. Finally, select your preferred dessert sweeteness:</Question>
+                    <Question>4. Finally, select your preferred dessert sweetness:</Question>
                     <Answers>
-                        <Answer onClick={() => filterSweeteness("low")}>Low</Answer>
-                        <Answer onClick={() => filterSweeteness("medium")}>Medium</Answer>
-                        <Answer onClick={() => filterSweeteness("high")}>High</Answer>
+                        <Answer onClick={() => filterSweetness("low")}>Low</Answer>
+                        <Answer onClick={() => filterSweetness("medium")}>Medium</Answer>
+                        <Answer onClick={() => filterSweetness("high")}>High</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>
