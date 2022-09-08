@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { RecipesContext } from "./RecipesContext";
-import { MenuContext } from "./MenuContext";
+import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
@@ -14,6 +14,10 @@ export const CreateMenu = () => {
         redWines,
         whiteWines,
     } = useContext(RecipesContext);
+
+    const {
+        state: { currentEmail },
+    } = useContext(UserContext);
 
     const [season, setSeason]  = useState();
     const [allergens, setAllergens]  = useState([]);
@@ -50,8 +54,9 @@ export const CreateMenu = () => {
             },
             body: JSON.stringify({
                 season: season,
-                allergens: allergens,
-                sweetness: sweetness,
+                // allergens: allergens,
+                // sweetness: sweetness,
+                email: currentEmail,
             })
         })
         .then((res) => {
