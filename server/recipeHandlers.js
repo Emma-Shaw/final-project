@@ -67,8 +67,8 @@ const allDesserts = async (req, res) => {
 
 const generateMenu = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
-    // const { season, allergens, sweetness } = req.body;
-    const { season } = req.body;
+    // const { season, allergens, sweetness, email } = req.body;
+    const { season, email } = req.body;
     try {
         await client.connect();
 
@@ -152,8 +152,19 @@ const generateMenu = async (req, res) => {
 
         const randomDessertChoice = temporaryDessertsList[dessertsArrayPosition];
 
-        randomStarterChoice && randomMainChoice && randomDessertChoice
-        ? res.status(200).json({ status: 200, starter: randomStarterChoice, main: randomMainChoice, dessert: randomDessertChoice, message: "Data retrieved." })
+        const newMenu = {
+            starter: randomStarterChoice,
+            main: randomMainChoice,
+            dessert: randomDessertChoice
+        }
+
+        const addNewUserMenu = await db.collection("users").updateOne(
+            { email: email },
+            { $set: {"menu": newMenu} }
+        );
+
+        addNewUserMenu
+        ? res.status(200).json({ status: 200, menu: newMenu, message: "Data retrieved." })
         : res.status(500).json({ status: 500, message: "Error - Data not retrieved." })
     } catch (err) {
         console.log("Error:", err);
