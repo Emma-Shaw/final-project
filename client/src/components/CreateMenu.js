@@ -42,10 +42,9 @@ export const CreateMenu = () => {
     // Store user's wine selection in a useState
     const filterWines = (choice) => {
         setWine(choice);
-        console.log("Season =>", choice)
     };
 
-    // const menu = useNavigate();
+    const menu = useNavigate();
     const goToMenu = () => {
         fetch("/recipes", {
             method: "POST",
@@ -61,9 +60,7 @@ export const CreateMenu = () => {
         })
         .then((res) => {
             if (res?.ok) {
-                console.log("Response :", res.json());
-                // return res.json();
-                // menu("/menu");
+                menu("/menu");
             }
         })
         .catch((error) => {
