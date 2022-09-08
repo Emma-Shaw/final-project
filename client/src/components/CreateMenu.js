@@ -20,8 +20,6 @@ export const CreateMenu = () => {
     const [sweeteness, setSweeteness]  = useState();
     const [wine, setWine]  = useState();
 
-    useEffect(() => {console.log("Allergens =>", starters)}, [starters]);
-
     // Store user's season selection in a useState
     const filterSeason = (choice) => {
         setSeason(choice);
@@ -43,9 +41,29 @@ export const CreateMenu = () => {
         console.log("Season =>", choice)
     };
 
-    const menu = useNavigate();
+    // const menu = useNavigate();
     const goToMenu = () => {
-        menu("/menu");
+        fetch("/recipes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                season: season,
+                allergens: allergens,
+                sweeteness: sweeteness,
+            })
+        })
+        .then((res) => {
+            if (res?.ok) {
+                console.log("Response :", res.json());
+                // return res.json();
+                // menu("/menu");
+            }
+        })
+        .catch((error) => {
+            console.log("Error :", error);
+        })
     };
 
     return (
@@ -74,8 +92,8 @@ export const CreateMenu = () => {
                 <Prompt>
                     <Question>3. Third, choose a type of wine:</Question>
                     <Answers>
-                        <Answer onClick={() => filterWines("redWines")}>Red</Answer>
-                        <Answer onClick={() => filterWines("whiteWines")}>White</Answer>
+                        <Answer onClick={() => filterWines("red_wines")}>Red</Answer>
+                        <Answer onClick={() => filterWines("white_wines")}>White</Answer>
                     </Answers>
                 </Prompt>
                 <Prompt>

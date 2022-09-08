@@ -13,7 +13,7 @@ const checkJwt = auth({
 });
 
 const { allRedWines, allWhiteWines, randomWine} = require("./wineHandlers");
-const { allStarters, allMains, allDesserts, randomStarter, randomMain, randomDessert } = require("./recipeHandlers");
+const { allStarters, allMains, allDesserts, generateMenu } = require("./recipeHandlers");
 const { allUsers, singleUser, createNewUser, userMenu, public, private  } = require("./userHandlers");
 
 app.use(morgan("tiny"))
@@ -45,9 +45,7 @@ app.get("/recipes/starters", allStarters) // Fetch all starters recipes data
 app.get("/recipes/mains", allMains) // Fetch all mains recipes data
 app.get("/recipes/desserts", allDesserts) // Fetch all desserts recipes data
 
-app.post("/recipes/starters", randomStarter)
-app.post("/recipes/mains", randomMain)
-app.post("/recipes/desserts", randomDessert)
+app.post("/recipes", generateMenu)
 
 
 // 3. Users
