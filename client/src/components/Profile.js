@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import dessert from "../assets/dessert.jpg";
+import avatar from "../assets/avatar.png";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
 
@@ -13,7 +13,7 @@ const Profile = () => {
         <Wrapper>
             <Title>Profile</Title>
             {loggedIn === true && <ProfileInfo>
-                <ProfileImg src={dessert} />
+                <ProfileImg src={avatar} />
                 <ContactInfo>
                     {currentGivenName && currentSurname && <Info>{currentGivenName} {currentSurname}</Info>}
                     {currentEmail && <Info>{currentEmail}</Info>}
@@ -26,6 +26,7 @@ const Profile = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 `;
 
@@ -51,6 +52,7 @@ const ProfileImg = styled.img`
     width: 250px;
     height: 250px;
     border-radius: 50%;
+    background: var();
 `;
 
 const Info = styled.p`
