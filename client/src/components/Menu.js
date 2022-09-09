@@ -52,12 +52,12 @@ export const Menu = () => {
             {menuCreated === true && <Wrapper>
                 <Title>Menu</Title>
                 <MenuItems>
-                    {starter && <Item>
+                    {starter && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
                         <ItemTitle>Entrée</ItemTitle>
                         <ItemName>{starter.name}</ItemName>
                         <ItemDescription>{starter.description}</ItemDescription>
                     </Item>}
-                    {main && <Item>
+                    {main && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
                         <ItemTitle>Main Course</ItemTitle>
                         <ItemName>{main.name}</ItemName>
                         <ItemDescription>{main.description}</ItemDescription>
@@ -99,27 +99,33 @@ const CreateBtn = styled.button`
 const MenuItems = styled.div`
     max-width: 600px;
     text-align: center;
+    font-family: 'Pinyon Script', cursive;
+    border: 1px dotted var(--color-dark-wine);
+    margin-bottom: 50px;
 `;
 
 const Item = styled.div`
     margin: 20px;
-    border-bottom: 1px dotted var(--color-dark-wine);
 `
 
 const ItemTitle = styled.h2`
     color: var(--color-dark-wine);
     margin: 10px;
+    text-decoration: underline;
+    font-size: 30px;
 `;
 
 const ItemName = styled.h3`
     color: var(--color-dark-wine);
     margin: 20px;
+    font-size: 25px;
 `;
 
 const ItemDescription = styled.p`
     color: var(--color-dark-wine);
     margin: 20px;
     font-style: italic;
+    font-size: 20px;
 `;
 
 export default Menu;
