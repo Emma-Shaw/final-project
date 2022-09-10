@@ -15,7 +15,7 @@ const checkJwt = auth({
 
 const { allRedWines, allWhiteWines, randomWine} = require("./wineHandlers");
 const { allStarters, allMains, allDesserts, generateMenu } = require("./recipeHandlers");
-const { allUsers, singleUser, createNewUser, userMenu, public, private  } = require("./userHandlers");
+const { allUsers, singleUser, createNewUser, userMenu  } = require("./userHandlers");
 
 app.use(morgan("tiny"))
 app.use(express.json())
