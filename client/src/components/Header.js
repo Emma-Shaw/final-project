@@ -8,16 +8,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
 
-    const { logout } = useAuth0();
+    const { isAuthenticated, logout } = useAuth0();
 
     const {
         state: { loggedIn },
         actions: { logoutUser },
     } = useContext(UserContext);
 
+    const removeAuthUser = () => {
+        logout({ returnTo: window.location.origin })
+        logoutUser();
+    };
+
     return (
         <>
-            {loggedIn === true && <Container>
+            {isAuthenticated && <Container>
                 {<FirstBorder>Welcome &nbsp; <ImSpoonKnife /></FirstBorder>}
                 <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
                 <Wrapper>
@@ -30,7 +35,7 @@ const Header = () => {
                             <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
                         </NavUl>
                     </NavigationBar>
-                    <LogOutBtn onClick={() => logout({ returnTo: window.location.origin })}>Sign-out</LogOutBtn>
+                    <LogOutBtn onClick={removeAuthUser}>Sign-out</LogOutBtn>
                     </NavigationBtns>
                 </Wrapper>
             </Container>}

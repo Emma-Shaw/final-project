@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "./UserContext";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import Loader from "./Loader";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Menu = () => {
 
-    const {
-        state: { currentEmail },
-    } = useContext(UserContext);
+    const { user } = useAuth0();
+    const currentEmail = user?.email;
 
     const [loader, setLoader] = useState(false);
     const [menuCreated, setMenuCreated] = useState(false);
@@ -32,6 +31,9 @@ export const Menu = () => {
                 setStarter(data.data.menu.starter);
                 setMain(data.data.menu.main);
                 setDessert(data.data.menu.dessert);
+                setLoader(false);
+            } else {
+                setMenuCreated(false);
                 setLoader(false);
             }
             setLoader(false);

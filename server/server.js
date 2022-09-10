@@ -15,7 +15,7 @@ const checkJwt = auth({
 
 const { allRedWines, allWhiteWines, randomWine} = require("./wineHandlers");
 const { allStarters, allMains, allDesserts, generateMenu } = require("./recipeHandlers");
-const { specificUser, createNewUser, userMenu, authenticateUser  } = require("./userHandlers");
+const { specificUser, createNewUser, authenticateUser  } = require("./userHandlers");
 
 app.use(morgan("tiny"))
 app.use(express.json())
@@ -41,9 +41,6 @@ app.post("/recipes", generateMenu)
 // User routes
 app.get("/users/:userEmail", specificUser) // Fetch specific user based on userId
 app.post("/users/create-user", createNewUser) // Create a new user when user signs-up
-
-// Menu routes
-app.get("/menus/:menuId", userMenu) // Fetch specific menu by menuId
 
 app.get("*", (req, res) => { res.status(404).json({ status: 404, message: "Oops - are you lost?" }) })
 

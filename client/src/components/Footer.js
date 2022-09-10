@@ -4,8 +4,11 @@ import banner from "../assets/cheers_longest_version.png";
 import { ImInstagram, ImFacebook2, ImTwitter, ImPinterest2  } from "react-icons/im";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Footer = () => {
+
+    const { isAuthenticated } = useAuth0();
 
     const {
         state: { loggedIn },
@@ -13,7 +16,7 @@ const Footer = () => {
 
     return (
         <>
-            {loggedIn === true && <Container>
+            {isAuthenticated && <Container>
                 <Banner src={banner} />
                 <Wrapper>
                     <License>2022 @ Happy Hour Ltd. All rights reserved.</License>

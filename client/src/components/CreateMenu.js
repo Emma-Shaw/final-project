@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { RecipesContext } from "./RecipesContext";
-import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const CreateMenu = () => {
+
+    const { user } = useAuth0();
+    const currentEmail = user?.email;
 
     const {                 
         starters,
@@ -14,10 +16,6 @@ export const CreateMenu = () => {
         redWines,
         whiteWines,
     } = useContext(RecipesContext);
-
-    const {
-        state: { currentEmail },
-    } = useContext(UserContext);
 
     const [season, setSeason]  = useState();
     const [allergens, setAllergens]  = useState([]);

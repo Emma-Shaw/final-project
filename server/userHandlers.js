@@ -52,6 +52,8 @@ const specificUser = async (req, res) => {
 
         const findUser = await db.collection("users").findOne({ email: userEmail });
 
+        console.log("Find user :", findUser);
+
         findUser
         ? res.status(200).json({ status: 200, data: findUser, message: "Success: user exists." })
         : res.status(500).json({ status: 500, message: "Error: user does not exist." })
@@ -94,19 +96,4 @@ const createNewUser = async (req, res) => {
     client.close();
 };
 
-const userMenu = async (req, res) => {
-    // const client = new MongoClient(MONGO_URI, options);
-    // try {
-    //     await client.connect();
-
-    //     const db = client.db(dbName);
-
-    //     // ? res.status(200).json({ status: 200, message: "Data retrieved." })
-    //     // : res.status(500).json({ status: 500, message: "Error - Data not retrieved." })
-    // } catch (err) {
-    //     console.log("Error:", err);
-    // }
-    // client.close();
-};
-
-module.exports = { authenticateUser, specificUser, createNewUser, userMenu };
+module.exports = { authenticateUser, specificUser, createNewUser };
