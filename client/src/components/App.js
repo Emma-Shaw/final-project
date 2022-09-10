@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import RequireAuth from "./RequireAuth";
 import AuthLayout from "./AuthLayout";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { UserContext } from "./UserContext";
 import Header from "./Header";
@@ -14,10 +15,16 @@ import CreateMenu from "./CreateMenu";
 import Menu from "./Menu";
 import OurPurpose from "./OurPurpose"
 import ErrorPage from "./ErrorPage";
+import { useEffect } from "react";
 
 const App = () => {
 
+  const { isAuthenticated } = useAuth0();
   const { state: { loggedIn } } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log("Authentication Status :", isAuthenticated)
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -25,6 +32,7 @@ const App = () => {
       <Wrapper>
       <Header />
           <Routes>
+            {/* {isAuthenticated === false && <Route exact path="/" element={<AuthLayout />}></Route>} */}
             <Route exact path="/" element={<AuthLayout />}></Route>
             <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>}></Route>
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
