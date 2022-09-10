@@ -2,12 +2,14 @@ import styled from "styled-components";
 import mainLogo from "../assets/welcome_page_logo.png";
 import mainArt from "../assets/welcome_page_art.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import Loader from "./Loader";
 
 export const AuthStatus = () => {
-    const { isAuthenticated, user, loginWithRedirect, getAccessTokenSilently } = useAuth0();
+    const [loader, setLoader] = useState(false);
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
     const {
         actions: { loginUser }
     } = useContext(UserContext);
@@ -15,44 +17,31 @@ export const AuthStatus = () => {
     const home = useNavigate();
     const goToHomePage = () => {
         home("/home");
+        setLoader(false);
     };
 
     const authenticateUser = async () => {
+        setLoader(true)
         await loginWithRedirect();
-        const authenticate = async () => {
-            if (isAuthenticated) {
-                const requestToken = await getAccessTokenSilently();
-                fetch("/private", {
-                    method: "POST",
-                    body: JSON.stringify(user),
-                    headers: {
-                        Authorization: "Bearer " + requestToken,
-                        "Content-Type": "application/json",
-                    },
-                }).then((res) => {
-                    if (res.status === 200) {
-                        loginUser(user);
-                        return res.json().then((data) => console.log("User data :", data))
-                    }
-                }).catch((error) => {
-                    console.log("Error :", error);
-                })
-            };
-        };
-        await authenticate();
         goToHomePage();
     };
 
     return (
-        <Wrapper>
-            <WelcomeMenu>
-                <WelcomeLogo src={ mainLogo } />
-                <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
-            </WelcomeMenu>
-            <WelcomeArt src={ mainArt } />
-        </Wrapper>
+        <Container>
+            {isAuthenticated && <Navigate to="/home" />}
+            {!isAuthenticated && <Wrapper>
+                <WelcomeMenu>
+                    <WelcomeLogo src={ mainLogo } />
+                    <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
+                </WelcomeMenu>
+                <WelcomeArt src={ mainArt } />
+            </Wrapper>}
+        </Container>
     );
 };
+
+const Container = styled.div`
+`;
 
 const Wrapper = styled.div`
     position: fixed;

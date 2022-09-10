@@ -19,12 +19,35 @@ import { useEffect } from "react";
 
 const App = () => {
 
-  const { isAuthenticated } = useAuth0();
-  const { state: { loggedIn } } = useContext(UserContext);
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
+  const { 
+          state: { loggedIn },
+          actions: { loginUser }
+        } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("Authentication Status :", isAuthenticated)
-  }, [isAuthenticated]);
+      const authenticate = async () => {
+          if (isAuthenticated) {
+              const requestToken = await getAccessTokenSilently();
+              fetch("/private", {
+                  method: "POST",
+                  body: JSON.stringify(user),
+                  headers: {
+                      Authorization: "Bearer " + requestToken,
+                      "Content-Type": "application/json",
+                  },
+              }).then((res) => {
+                  if (res.status === 200) {
+                      loginUser(user)
+                      return res.json().then((data) => console.log("User data :", data))
+                  }
+              }).catch((error) => {
+                  console.log("Error :", error);
+              })
+          };
+      };
+      authenticate()
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
     <>
@@ -32,7 +55,6 @@ const App = () => {
       <Wrapper>
       <Header />
           <Routes>
-            {/* {isAuthenticated === false && <Route exact path="/" element={<AuthLayout />}></Route>} */}
             <Route exact path="/" element={<AuthLayout />}></Route>
             <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>}></Route>
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>

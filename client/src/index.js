@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserProvider } from './components/UserContext';
 import { RecipesProvider } from './components/RecipesContext';
-import { MenuProvider } from './components/MenuContext';
 import App from "./components/App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,9 +19,7 @@ root.render(
       <BrowserRouter>
         <UserProvider>
           <RecipesProvider>
-            <MenuProvider>
               <App />
-            </MenuProvider>
           </RecipesProvider>
         </UserProvider>
       </BrowserRouter>

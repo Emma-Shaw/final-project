@@ -6,7 +6,7 @@ import { useContext } from "react";
 const Profile = () => {
 
     const {
-        state: { loggedIn, currentGivenName, currentSurname, currentEmail },
+        state: { loggedIn, currentEmail },
     } = useContext(UserContext);
 
     return (
@@ -15,7 +15,6 @@ const Profile = () => {
             {loggedIn === true && <ProfileInfo>
                 <ProfileImg src={avatar} />
                 <ContactInfo>
-                    {currentGivenName && currentSurname && <Info>{currentGivenName} {currentSurname}</Info>}
                     {currentEmail && <Info>{currentEmail}</Info>}
                 </ContactInfo>
             </ProfileInfo>}

@@ -11,16 +11,14 @@ const Header = () => {
     const { logout } = useAuth0();
 
     const {
-        state: { loggedIn, currentGivenName },
+        state: { loggedIn },
         actions: { logoutUser },
     } = useContext(UserContext);
-
-    const upperCaseName = currentGivenName?.charAt(0).toUpperCase() + currentGivenName?.slice(1);
 
     return (
         <>
             {loggedIn === true && <Container>
-                {upperCaseName && <FirstBorder>Welcome, {upperCaseName} &nbsp; <ImSpoonKnife /></FirstBorder>}
+                {<FirstBorder>Welcome &nbsp; <ImSpoonKnife /></FirstBorder>}
                 <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
                 <Wrapper>
                     <LogoLink to="/home"><Logo src={logo} /></LogoLink>

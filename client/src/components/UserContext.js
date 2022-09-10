@@ -5,8 +5,6 @@ export const UserContext = createContext(null);
 
 const initialState = {
     loggedIn: false,
-    currentGivenName: null,
-    currentSurname: null,
     currentEmail: null,
 };
 
@@ -16,8 +14,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loggedIn: true,
-                currentGivenName: action.givenName,
-                currentSurname: action.surname,
                 currentEmail: action.email,
             };
         }
@@ -25,8 +21,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loggedIn: false,
-                currentGivenName: null,
-                currentSurname: null,
                 currentEmail: null,
             }
         }
@@ -42,8 +36,6 @@ export const UserProvider = ({ children }) => {
         dispatch({
             type: "login-user",
             ...data,
-            givenName: data.givenName,
-            surname: data.surname,
             email: data.email,
         });
     };
