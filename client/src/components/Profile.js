@@ -1,21 +1,27 @@
 import styled from "styled-components";
-import avatar from "../assets/avatar.png";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
 
+    const { user } = useAuth0();
+    const userName = user?.nickname;
+    const userEmail = user?.email;
+    const userAvatar = user?.picture;
+
     const {
-        state: { loggedIn, currentEmail },
+        state: { loggedIn },
     } = useContext(UserContext);
 
     return (
         <Wrapper>
             <Title>Profile</Title>
             {loggedIn === true && <ProfileInfo>
-                <ProfileImg src={avatar} />
+                <ProfileImg src={userAvatar} />
                 <ContactInfo>
-                    {currentEmail && <Info>{currentEmail}</Info>}
+                    {userName && <Info>Username: {userName}</Info>}
+                    {userEmail && <Info>Email: {userEmail}</Info>}
                 </ContactInfo>
             </ProfileInfo>}
         </Wrapper>
@@ -38,7 +44,7 @@ const ProfileInfo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 500px;
     margin: 50px;
 `;
 

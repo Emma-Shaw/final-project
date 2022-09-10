@@ -5,10 +5,12 @@ import { ImMenu, ImSpoonKnife } from "react-icons/im";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const Header = () => {
 
-    const { isAuthenticated, logout } = useAuth0();
+    const { isAuthenticated, user, logout } = useAuth0();
+    const userName = user?.nickname;
 
     const {
         state: { loggedIn },
@@ -23,7 +25,7 @@ const Header = () => {
     return (
         <>
             {isAuthenticated && <Container>
-                {<FirstBorder>Welcome &nbsp; <ImSpoonKnife /></FirstBorder>}
+                {userName && <FirstBorder><ImSpoonKnife />&nbsp;Welcome,{userName}</FirstBorder>}
                 <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
                 <Wrapper>
                     <LogoLink to="/home"><Logo src={logo} /></LogoLink>
