@@ -4,6 +4,7 @@ const app = express();
 
 // Configure Auth0
 const { auth } = require("express-oauth2-jwt-bearer");
+const bodyParser = require("body-parser");
 
 // Authorization middleware. When used, the Access Token must
 // exist and be verified against the Auth0 JSON Web Key Set.
@@ -18,19 +19,21 @@ const { allUsers, singleUser, createNewUser, userMenu, public, private  } = requ
 
 app.use(morgan("tiny"))
 app.use(express.json())
+app.use(bodyParser.json({ type: "application/json" }))
 app.use(express.urlencoded({ extended: false }))
 
 // This route doesn't need authentication
-app.get("/api/public", ((req, res) => {
-    res.json({
-        message: "Hello from a public endpoint! You don't need to be authenticated to see this."
+app.get("/", ((req, res) => {
+    res.status(200).json({
+        message: "No authentication required."
     })
 }));
 
 // This route needs authentication
-app.get("/api/private", checkJwt, ((req, res) => {
-    res.json({
-        message: "Hello from a private endpoint! You need to be authenticated to see this."
+app.get("/private", checkJwt, ((req, res) => {
+    console.log("REQ.BODY :", req.body)
+    res.status(200).json({
+        message: "Authenticated."
     })
 }));
 

@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyles"
 import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
+import RequireAuth from "./RequireAuth";
 
+import { UserContext } from "./UserContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import Homepage from "./Homepage";
@@ -12,9 +15,6 @@ import Welcome from "./Welcome";
 import OurPurpose from "./OurPurpose"
 import UserAuthentication from "./UserAuthentication";
 import ErrorPage from "./ErrorPage";
-
-import { UserContext } from "./UserContext";
-import { useContext } from "react";
 
 const App = () => {
 
@@ -37,11 +37,11 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Welcome />}></Route>
             <Route exact path="/authentication" element={<UserAuthentication />}></Route>
-            <Route path="/home" element={<Homepage />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/create-menu" element={<CreateMenu />}></Route>
-            <Route path="/menu" element={<Menu />}></Route>
-            <Route path="/purpose" element={<OurPurpose />}></Route>
+            <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>}></Route>
+            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
+            <Route path="/create-menu" element={<RequireAuth><CreateMenu /></RequireAuth>}></Route>
+            <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>}></Route>
+            <Route path="/purpose" element={<RequireAuth><OurPurpose /></RequireAuth>}></Route>
           </Routes>
         </Wrapper>
         <Footer />
