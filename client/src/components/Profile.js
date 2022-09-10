@@ -17,7 +17,7 @@ const Profile = () => {
     return (
         <Wrapper>
             <Title>Profile</Title>
-            {loggedIn === true && <ProfileInfo>
+            {user && <ProfileInfo>
                 <ProfileImg src={userAvatar} />
                 <ContactInfo>
                     {userName && <Info>Username: {userName}</Info>}

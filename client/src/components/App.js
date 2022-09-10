@@ -49,6 +49,8 @@ const App = () => {
       authenticate()
   }, [isAuthenticated, getAccessTokenSilently]);
 
+  useEffect(() => {console.log("Current user :", user)}, []);
+
   return (
     <>
       <GlobalStyle />
