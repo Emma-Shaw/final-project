@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
-import { useNavigate } from "react-router-dom";
 import { ImMenu, ImSpoonKnife } from "react-icons/im";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
+
+    const { logout } = useAuth0();
 
     const {
         state: { loggedIn, currentGivenName },
@@ -14,12 +16,6 @@ const Header = () => {
     } = useContext(UserContext);
 
     const upperCaseName = currentGivenName?.charAt(0).toUpperCase() + currentGivenName?.slice(1);
-
-    const welcome = useNavigate();
-    const goToWelcome = () => {
-        logoutUser();
-        welcome("/");
-    };
 
     return (
         <>
@@ -36,7 +32,7 @@ const Header = () => {
                             <NavLi><NavLink to="/profile">Profile</NavLink></NavLi>
                         </NavUl>
                     </NavigationBar>
-                    <LogOutBtn onClick={ goToWelcome }>Log out</LogOutBtn>
+                    <LogOutBtn onClick={() => logout({ returnTo: window.location.origin })}>Sign-out</LogOutBtn>
                     </NavigationBtns>
                 </Wrapper>
             </Container>}

@@ -3,6 +3,8 @@ import GlobalStyle from "./GlobalStyles"
 import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import RequireAuth from "./RequireAuth";
+import AuthLayout from "./AuthLayout";
+import AuthStatus from "./AuthStatus";
 
 import { UserContext } from "./UserContext";
 import Header from "./Header";
@@ -11,9 +13,7 @@ import Homepage from "./Homepage";
 import Profile from "./Profile";
 import CreateMenu from "./CreateMenu";
 import Menu from "./Menu";
-import Welcome from "./Welcome";
 import OurPurpose from "./OurPurpose"
-import UserAuthentication from "./UserAuthentication";
 import ErrorPage from "./ErrorPage";
 
 const App = () => {
@@ -35,13 +35,15 @@ const App = () => {
             <Route path="/purpose" element={loggedIn === true ? <OurPurpose /> : <ErrorPage />}></Route>
           </Routes> */}
           <Routes>
-            <Route exact path="/" element={<Welcome />}></Route>
-            <Route exact path="/authentication" element={<UserAuthentication />}></Route>
+            <Route element={<AuthLayout />}>
+            <Route exact path="/" element={<AuthStatus />}></Route>
+            {/* <Route exact path="/authentication" element={<UserAuthentication />}></Route> */}
             <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>}></Route>
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
             <Route path="/create-menu" element={<RequireAuth><CreateMenu /></RequireAuth>}></Route>
             <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>}></Route>
             <Route path="/purpose" element={<RequireAuth><OurPurpose /></RequireAuth>}></Route>
+            </Route>
           </Routes>
         </Wrapper>
         <Footer />

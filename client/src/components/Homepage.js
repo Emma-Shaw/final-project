@@ -2,9 +2,42 @@ import styled from "styled-components";
 import redWinePour from "../assets/red_wine_pour.jpg";
 import friendsCooking from "../assets/friends_cooking.jpg";
 import circle from "../assets/circle_no_bg.png";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
 const Homepage = () => {
+
+    const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
+    const {
+        actions: { loginUser }
+    } = useContext(UserContext);
+
+    useEffect(() => {
+        const authenticate = async () => {
+            if (isAuthenticated) {
+                const requestToken = await getAccessTokenSilently();
+                fetch("/private", {
+                    method: "POST",
+                    body: JSON.stringify(user),
+                    headers: {
+                        Authorization: "Bearer " + requestToken,
+                        "Content-Type": "application/json",
+                    },
+                }).then((res) => {
+                    if (res.status === 200) {
+                        loginUser();
+                        return res.json().then((data) => console.log("User data :", data))
+                    }
+                }).catch((error) => {
+                    console.log("Error :", error);
+                })
+            };
+        };
+        authenticate();
+    }, [isAuthenticated, getAccessTokenSilently]);
 
     const purpose = useNavigate();
     const goToPurpose = () => {

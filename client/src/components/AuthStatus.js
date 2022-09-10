@@ -1,20 +1,16 @@
 import styled from "styled-components";
 import mainLogo from "../assets/welcome_page_logo.png";
 import mainArt from "../assets/welcome_page_art.png";
-import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export const Welcome = () => {
-
-    const authenticate = useNavigate();
-    const goToAuthentication = () => {
-        authenticate("/authentication");
-    };
+export const AuthStatus = () => {
+    const { loginWithRedirect } = useAuth0();
 
     return (
         <Wrapper>
             <WelcomeMenu>
                 <WelcomeLogo src={ mainLogo } />
-                <GetStarted onClick={goToAuthentication}>Get started</GetStarted>
+                <GetStarted onClick={() => loginWithRedirect()}>Get started</GetStarted>
             </WelcomeMenu>
             <WelcomeArt src={ mainArt } />
         </Wrapper>
@@ -50,4 +46,4 @@ const WelcomeArt = styled.img`
     height: 425px;
 `;
 
-export default Welcome;
+export default AuthStatus;
