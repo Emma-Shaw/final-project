@@ -25,7 +25,7 @@ const Header = () => {
     return (
         <>
             {isAuthenticated && <Container>
-                {userName && <FirstBorder><ImSpoonKnife />&nbsp;Welcome,{userName}</FirstBorder>}
+                {userName && <FirstBorder><ImSpoonKnife />&nbsp;Welcome,&nbsp;{userName}</FirstBorder>}
                 <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
                 <Wrapper>
                     <LogoLink to="/home"><Logo src={logo} /></LogoLink>
