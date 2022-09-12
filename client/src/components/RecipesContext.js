@@ -5,8 +5,6 @@ export const RecipesProvider = ({ children }) => {
     const [starters, setStarters] = useState([]);
     const [mains, setMains] = useState([]);
     const [desserts, setDesserts] = useState([]);
-    const [redWines, setRedWines] = useState([]);
-    const [whiteWines, setWhiteWines] = useState([]);
 
     useEffect(() => {
         fetch("/recipes/starters")
@@ -32,22 +30,6 @@ export const RecipesProvider = ({ children }) => {
         })
     }, []);
 
-    useEffect(() => {
-        fetch("/wines/red")
-        .then((res) => res.json())
-        .then((data) => {
-            setRedWines(data.data);
-        })
-    }, []);
-
-    useEffect(() => {
-        fetch("/wines/white")
-        .then((res) => res.json())
-        .then((data) => {
-            setWhiteWines(data.data);
-        })
-    }, []);
-
     return (
         <RecipesContext.Provider
             value={{
@@ -57,10 +39,6 @@ export const RecipesProvider = ({ children }) => {
                 setMains,
                 desserts,
                 setDesserts,
-                redWines,
-                setRedWines,
-                whiteWines,
-                setWhiteWines
             }}
         >
             {children}

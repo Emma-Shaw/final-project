@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Loader from "./Loader";
 import { useAuth0 } from "@auth0/auth0-react";
+import whiteWine from "../assets/white_wine_pour.jpg"
+import redWine from "../assets/red_wine_pour.jpg"
 
 export const Menu = () => {
 
@@ -103,9 +105,10 @@ export const Menu = () => {
                         </Item>}
                     </MenuItems>
                     <WinePairing>
-                            <ItemTitle>Wine Pairing</ItemTitle>
+                            <ItemTitle>Wine suggestion</ItemTitle>
                             {winePairing && <WineSelection>
-                                {color === "red_wines" ? <ItemName>Color: Red</ItemName> : <ItemName>Color: White</ItemName>}
+                                {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
+                                {color === "red_wines" ? <ItemName>Red wine</ItemName> : <ItemName>White wine</ItemName>}
                                 <ItemName>Name:&nbsp;{winePairing.name}</ItemName>
                                 <ItemName>Region:&nbsp;{winePairing.region}</ItemName>
                                 {organic === "true" ? <ItemName>Organic: Yes</ItemName> : <ItemName>Organic: No</ItemName>}
@@ -223,6 +226,14 @@ const ItemDescription = styled.p`
     color: var(--color-dark-wine);
 `;
 
+const ItemImg = styled.img`
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    margin: 10px;
+`;
+
 const WinePairing = styled.div`
     display: flex;
     flex-direction: column;
@@ -259,6 +270,7 @@ const Option = styled.option`
 const WineSelection = styled.div`
     display: flex;
     flex-direction: column;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 `;
 
 export default Menu;

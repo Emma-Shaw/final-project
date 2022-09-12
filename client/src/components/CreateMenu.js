@@ -13,14 +13,11 @@ export const CreateMenu = () => {
         starters,
         mains,
         desserts,
-        redWines,
-        whiteWines,
     } = useContext(RecipesContext);
 
     const [season, setSeason]  = useState();
     const [allergens, setAllergens]  = useState([]);
     const [sweetness, setSweetness]  = useState();
-    const [wine, setWine]  = useState();
 
     // Store user's season selection in a useState
     const filterSeason = (choice) => {
@@ -37,11 +34,6 @@ export const CreateMenu = () => {
         setSweetness(choice);
     };
 
-    // Store user's wine selection in a useState
-    const filterWines = (choice) => {
-        setWine(choice);
-    };
-
     const menu = useNavigate();
     const goToMenu = () => {
         fetch("/recipes", {
@@ -51,8 +43,8 @@ export const CreateMenu = () => {
             },
             body: JSON.stringify({
                 season: season,
-                // allergens: allergens,
-                // sweetness: sweetness,
+                allergens: allergens,
+                sweetness: sweetness,
                 email: currentEmail,
             })
         })
@@ -90,14 +82,7 @@ export const CreateMenu = () => {
                     </Answers>
                 </Prompt>
                 <Prompt>
-                    <Question>3. Third, choose a type of wine:</Question>
-                    <Answers>
-                        <Answer onClick={() => filterWines("red_wines")}>Red</Answer>
-                        <Answer onClick={() => filterWines("white_wines")}>White</Answer>
-                    </Answers>
-                </Prompt>
-                <Prompt>
-                    <Question>4. Finally, select your preferred dessert sweetness:</Question>
+                    <Question>3. Finally, select your preferred dessert sweetness:</Question>
                     <Answers>
                         <Answer onClick={() => filterSweetness("low")}>Low</Answer>
                         <Answer onClick={() => filterSweetness("medium")}>Medium</Answer>
@@ -105,7 +90,7 @@ export const CreateMenu = () => {
                     </Answers>
                 </Prompt>
                 <Prompt>
-                    <Question>5. Generate your menu:</Question>
+                    <Question>4. Generate your menu:</Question>
                     <Answers>
                         <Answer onClick={goToMenu}>Generate</Answer>
                     </Answers>
