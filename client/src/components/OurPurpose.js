@@ -24,11 +24,11 @@ const OurPurpose = () => {
                 <PurposeText>As a result, Happy Hour was created to solve this issue once and for all!</PurposeText>
                 <PurposeText>
                     By navigating to our <CreateMenu to="/create-menu">Create Menu</CreateMenu> page, you will be able to 
-                    automatically generate a delicious three course menu - including an appetizer, a main dish and a dessert - 
+                    generate a delicious three course menu - including an appetizer, a main dish and a dessert - 
                     complete with a suggested wine pairing. The best part - the menu can be catered 
                     to your exact food and dietary preferences!!
                 </PurposeText>
-                <PurposeText>Let's get to cooking!</PurposeText>
+                <PurposeText>Let's get creative!</PurposeText>
                 <CreateBtn onClick={goCreate} >Create menu</CreateBtn>
             </Description>
         </Purpose>

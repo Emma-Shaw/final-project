@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/happy_hour_logo.png";
-import { ImMenu, ImSpoonKnife } from "react-icons/im";
+import { ImMenu, ImSpoonKnife, ImQuotesLeft, ImQuotesRight } from "react-icons/im";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -25,7 +25,7 @@ const Header = () => {
         <>
             {isAuthenticated && <Container>
                 {userName && <FirstBorder><ImSpoonKnife />&nbsp;Welcome,&nbsp;{userName}</FirstBorder>}
-                <SecondBorder><SettingsBtn><ImMenu /></SettingsBtn></SecondBorder>
+                <SecondBorder><ImQuotesLeft />&nbsp;One cannot think well, love well, sleep well, if one has not dined well.&nbsp;<ImQuotesRight />&nbsp;- Virginia Woolf</SecondBorder>
                 <Wrapper>
                     <LogoLink to="/home"><Logo src={logo} /></LogoLink>
                     <NavigationBtns>

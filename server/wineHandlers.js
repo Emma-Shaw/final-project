@@ -55,10 +55,22 @@ const randomWine = async (req, res) => {
 
         const db = client.db(dbName);
 
-        const wineArray = await db.collection(color).find(
-            { region: region, organic: organic, sugar: sugar },
-        ).toArray();
-        
+        console.log("TESTS :", color, region, organic, sugar);
+
+        let wineArray;
+
+        if (sugar === undefined) {
+            wineArray = await db.collection(color).find(
+                { region: region, organic: organic },
+            ).toArray();
+        } else if (sugar === undefined && organic === undefined) {
+            wineArray = await db.collection(color).find({ region: region }).toArray();
+        } else {
+            wineArray = await db.collection(color).find(
+                { region: region, organic: organic, sugar: sugar },
+            ).toArray();
+        };
+
         const arrayLength = wineArray?.length;
         const arrayPosition = Math.floor(Math.random() * arrayLength);
         const wineSelection = wineArray[arrayPosition];
