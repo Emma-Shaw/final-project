@@ -58,6 +58,7 @@ const randomWine = async (req, res) => {
         const wineArray = await db.collection(color).find(
             { region: region, organic: organic, sugar: sugar },
         ).toArray();
+        
         const arrayLength = wineArray?.length;
         const arrayPosition = Math.floor(Math.random() * arrayLength);
         const wineSelection = wineArray[arrayPosition];

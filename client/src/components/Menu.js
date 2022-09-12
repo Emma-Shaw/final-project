@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import { useAuth0 } from "@auth0/auth0-react";
-import whiteWine from "../assets/white_wine_pour.jpg"
-import redWine from "../assets/red_wine_pour.jpg"
+import whiteWine from "../assets/white_wine_pour.jpg";
+import redWine from "../assets/red_wine_pour.jpg";
+import { ImGlass, ImMap2, ImLeaf, ImStatsBars } from "react-icons/im";
 
 export const Menu = () => {
 
@@ -120,19 +121,18 @@ export const Menu = () => {
                         </Item>}
                     </MenuItems>
                         {winePairingError === true && <WinePairing>
-                            <ItemName style={{ fontFamily: "Montserrat, Arial, Helvetica, sans-serif" }}>Oops - No wine pairings found. Please try again. </ItemName>
+                            <ItemName>Oops - No wine pairings found. Please try again. </ItemName>
                             <WinePairingBtn onClick={(() => {setPaired(false)})}>Back</WinePairingBtn>
                         </WinePairing>}
                         {winePairingError === false && <WinePairing>
                             <ItemTitle>Wine suggestion</ItemTitle>
                             {paired === true && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
-                                {color === "red_wines" ? <ItemName>Red wine</ItemName> : <ItemName>White wine</ItemName>}
-                                <ItemName>Name:&nbsp;{winePairing.name}</ItemName>
-                                <ItemName>Region:&nbsp;{winePairing.region}</ItemName>
-                                {organic === "true" ? <ItemName>Organic: Yes</ItemName> : <ItemName>Organic: No</ItemName>}
-                                <ItemName>Sugar:&nbsp;{winePairing.sugar}</ItemName>
-                                {winePairing?.pairings?.length > 0 && <ItemName>Pairings:&nbsp;{winePairing.pairings}</ItemName>}
+                                <ItemName><ImGlass />&nbsp;{winePairing.name}</ItemName>
+                                <ItemName><ImMap2 />&nbsp;{winePairing.region}</ItemName>
+                                {organic === "true" && <ItemName><ImLeaf />&nbsp;Organic</ItemName>}
+                                <ItemName><ImStatsBars />&nbsp;{winePairing.sugar}</ItemName>
+                                {/* {winePairing?.pairings?.length > 0 && <ItemName>Pairings:&nbsp;{winePairing.pairings}</ItemName>} */}
                             </WineSelection>}
                             {paired === false && <WineSelection>
                                 <OptionSelect autoComplete="red_wines"  onChange={((event) => {setColor(event.target.value)})} required >
@@ -289,7 +289,7 @@ const Option = styled.option`
 const WineSelection = styled.div`
     display: flex;
     flex-direction: column;
-    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    text-align: left;
 `;
 
 export default Menu;

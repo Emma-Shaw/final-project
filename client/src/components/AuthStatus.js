@@ -2,13 +2,11 @@ import styled from "styled-components";
 import mainLogo from "../assets/welcome_page_logo.png";
 import mainArt from "../assets/welcome_page_art.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
-import Loader from "./Loader";
 
 export const AuthStatus = () => {
-    const [loader, setLoader] = useState(false);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const {
         actions: { loginUser }
@@ -17,11 +15,9 @@ export const AuthStatus = () => {
     const home = useNavigate();
     const goToHomePage = () => {
         home("/home");
-        setLoader(false);
     };
 
     const authenticateUser = async () => {
-        setLoader(true)
         await loginWithRedirect();
         goToHomePage();
     };

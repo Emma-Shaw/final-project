@@ -67,8 +67,7 @@ const allDesserts = async (req, res) => {
 
 const generateMenu = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
-    // const { season, allergens, sweetness, email } = req.body;
-    const { season, sweetness, email } = req.body;
+    const { season, sweetness, allergens, email } = req.body;
     try {
         await client.connect();
 

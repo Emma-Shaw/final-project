@@ -5,7 +5,6 @@ import { ImMenu, ImSpoonKnife } from "react-icons/im";
 import { UserContext } from "./UserContext";
 import { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
 
 const Header = () => {
 
