@@ -52,8 +52,6 @@ const specificUser = async (req, res) => {
 
         const findUser = await db.collection("users").findOne({ email: userEmail });
 
-        console.log("Find user :", findUser);
-
         findUser
         ? res.status(200).json({ status: 200, data: findUser, message: "Success: user exists." })
         : res.status(500).json({ status: 500, message: "Error: user does not exist." })

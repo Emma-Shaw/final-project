@@ -20,6 +20,7 @@ export const Menu = () => {
     const [dessert, setDessert] = useState();
 
     // Wine states
+    const [winePairing, setWinePairing] = useState();
     const [color, setColor] = useState();
     const [region, setRegion] = useState();
     const [organic, setOrganic] = useState(false);
@@ -61,14 +62,13 @@ export const Menu = () => {
             body: JSON.stringify({
                 color: color,
                 region: region,
-                organic: organic,
+                organic: Boolean(organic),
                 sugar: sugar,
             })
         })
-        .then((res) => {
-            if (res?.ok) {
-                console.log("Wine pairing :", res.json());
-            }
+        .then((res) => {return res.json()})
+        .then((data) => {
+            setWinePairing(data.data);
         })
         .catch((error) => {
             console.log("Error :", error);
@@ -104,41 +104,51 @@ export const Menu = () => {
                     </MenuItems>
                     <WinePairing>
                             <ItemTitle>Wine Pairing</ItemTitle>
-                            <OptionSelect onChange={((event) => {setColor(event.target.value)})} >
-                                <Option value="" >Color</Option>
-                                <Option value="red_wines" >Red</Option>
-                                <Option value="white_wines" >White</Option>
-                            </OptionSelect>
-                                <OptionSelect onChange={((event) => {setRegion(event.target.value)})} >
-                                    <Option value="" >Region</Option>
-                                    {color === "white_wines" && <Option value="Spain" disabled>Spain</Option>}
-                                    {color === "red_wines" && <Option value="Spain" >Spain</Option>}
-                                    <Option value="France" >France</Option>
-                                    {color === "white_wines" && <Option value="Hungary" disabled>Hungary</Option>}
-                                    {color === "red_wines" && <Option value="Hungary" >Hungary</Option>}
-                                    <Option value="Italy" >Italy</Option>
-                                    {color === "white_wines" && <Option value="Switzerland" disabled>Switzerland</Option>}
-                                    {color === "red_wines" && <Option value="Switzerland" >Switzerland</Option>}
-                                    <Option value="Canada" >Canada</Option>
-                                    {color === "white_wines" && <Option value="Argentina" disabled>Argentina</Option>}
-                                    {color === "red_wines" && <Option value="Argentina" >Argentina</Option>}
-                                    {color === "white_wines" && <Option value="Greece" disabled>Greece</Option>}
-                                    {color === "red_wines" && <Option value="Greece" >Greece</Option>}
-                                    {color === "red_wines" && <Option value="United States" disabled >United States</Option>}
-                                    {color === "white_wines" && <Option value="United States" >United States</Option>}
+                            {winePairing && <WineSelection>
+                                {color === "red_wines" ? <ItemName>Color: Red</ItemName> : <ItemName>Color: White</ItemName>}
+                                <ItemName>Name:&nbsp;{winePairing.name}</ItemName>
+                                <ItemName>Region:&nbsp;{winePairing.region}</ItemName>
+                                {organic === "true" ? <ItemName>Organic: Yes</ItemName> : <ItemName>Organic: No</ItemName>}
+                                <ItemName>Sugar:&nbsp;{winePairing.sugar}</ItemName>
+                                {winePairing?.pairings?.length > 0 && <ItemName>Pairings:&nbsp;{winePairing.pairings}</ItemName>}
+                            </WineSelection>}
+                            {!winePairing && <WineSelection>
+                                <OptionSelect autoComplete="red_wines"  onChange={((event) => {setColor(event.target.value)})} required >
+                                    <Option value="" >Color</Option>
+                                    <Option value="red_wines" >Red</Option>
+                                    <Option value="white_wines" >White</Option>
                                 </OptionSelect>
-                                <OptionSelect onChange={((event) => {setOrganic(event.target.value)})}>
-                                    <Option value="" >Organic</Option>
-                                    <Option value={true} >Yes</Option>
-                                    <Option value={false} >No</Option>
-                                </OptionSelect>
-                                <OptionSelect onChange={((event) => {setSugar(event.target.value)})}>
-                                    <Option value="" >Sugar content</Option>
-                                    <Option value="low" >Low</Option>
-                                    <Option value="medium" >Medium</Option>
-                                    <Option value="high" >High</Option>
-                                </OptionSelect>
-                            <WinePairingBtn onClick={requestWinePairing}>Suggest wine</WinePairingBtn>
+                                    <OptionSelect onChange={((event) => {setRegion(event.target.value)})} >
+                                        <Option value="" >Region</Option>
+                                        {color === "white_wines" && <Option value="Spain" disabled>Spain</Option>}
+                                        {color === "red_wines" && <Option value="Spain" >Spain</Option>}
+                                        <Option value="France" >France</Option>
+                                        {color === "white_wines" && <Option value="Hungary" disabled>Hungary</Option>}
+                                        {color === "red_wines" && <Option value="Hungary" >Hungary</Option>}
+                                        <Option value="Italy" >Italy</Option>
+                                        {color === "white_wines" && <Option value="Switzerland" disabled>Switzerland</Option>}
+                                        {color === "red_wines" && <Option value="Switzerland" >Switzerland</Option>}
+                                        <Option value="Canada" >Canada</Option>
+                                        {color === "white_wines" && <Option value="Argentina" disabled>Argentina</Option>}
+                                        {color === "red_wines" && <Option value="Argentina" >Argentina</Option>}
+                                        {color === "white_wines" && <Option value="Greece" disabled>Greece</Option>}
+                                        {color === "red_wines" && <Option value="Greece" >Greece</Option>}
+                                        {color === "red_wines" && <Option value="United States" disabled >United States</Option>}
+                                        {color === "white_wines" && <Option value="United States" >United States</Option>}
+                                    </OptionSelect>
+                                    <OptionSelect onChange={((event) => {setOrganic(event.target.value)})}>
+                                        <Option value="" >Organic</Option>
+                                        <Option value="true" >Yes</Option>
+                                        <Option value="false" >No</Option>
+                                    </OptionSelect>
+                                    <OptionSelect onChange={((event) => {setSugar(event.target.value)})}>
+                                        <Option value="" >Sugar content</Option>
+                                        <Option value="low" >Low</Option>
+                                        <Option value="medium" >Medium</Option>
+                                        <Option value="high" >High</Option>
+                                    </OptionSelect>
+                                {color && <WinePairingBtn onClick={requestWinePairing}>Suggest wine</WinePairingBtn>}
+                            </WineSelection>}
                     </WinePairing>
                 </MenuCreation>
             </Wrapper>}
@@ -216,7 +226,7 @@ const ItemDescription = styled.p`
 const WinePairing = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 400px;
     text-align: center;
     font-family: 'Pinyon Script', cursive;
     margin-bottom: 50px;
@@ -244,6 +254,11 @@ const OptionSelect = styled.select`
 `;
 
 const Option = styled.option`
+`;
+
+const WineSelection = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 export default Menu;

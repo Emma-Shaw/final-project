@@ -49,22 +49,22 @@ const allWhiteWines = async (req, res) => {
 
 const randomWine = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
-    const { choice, pairings } = req.body;
+    const { color, region, organic, sugar } = req.body;
     try {
         await client.connect();
 
         const db = client.db(dbName);
 
-        const wineArray = await db.collection(choice).find().toArray();
+        const wineArray = await db.collection(color).find(
+            { region: region, organic: organic, sugar: sugar },
+        ).toArray();
         const arrayLength = wineArray?.length;
         const arrayPosition = Math.floor(Math.random() * arrayLength);
         const wineSelection = wineArray[arrayPosition];
 
-        // ADD FUNCTIONALITY TO LOCATE WINE BASED ON PAIRINGS TOO
-
         wineSelection
         ? res.status(200).json({ status: 200, data: wineSelection, message: "Data retrieved." })
-        : res.status(500).json({ status: 500, message: "Error - Data not retrieved." })
+        : res.status(500).json({ status: 500, message: "Error - No wine matches found." })
     } catch (err) {
         console.log("Error:", err);
     }
