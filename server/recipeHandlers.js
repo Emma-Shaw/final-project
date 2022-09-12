@@ -68,22 +68,16 @@ const allDesserts = async (req, res) => {
 const generateMenu = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
     // const { season, allergens, sweetness, email } = req.body;
-    const { season, email } = req.body;
+    const { season, sweetness, email } = req.body;
     try {
         await client.connect();
 
         const db = client.db(dbName);
 
         // 1. STARTERS
-        let temporaryStartersList = [];
-        const starters = await db.collection("starters").find().toArray();
-
-        // a. Filter season
-        for (let s = 0; s < starters?.length; s++) {
-            if (starters[s].season === season) {
-                temporaryStartersList.push(starters[s]);
-            }
-        };
+        const starters = await db.collection("starters").find(
+            {season: season}
+        ).toArray();
 
         // b. Filter allergens / Not working well
         // for (let s = 0; s < temporaryStartersList?.length; s++) {
@@ -95,62 +89,27 @@ const generateMenu = async (req, res) => {
         //     }
         // };
 
-        const startersArrayLength = temporaryStartersList?.length;
+        const startersArrayLength = starters?.length;
         const startersArrayPosition = Math.floor(Math.random() * startersArrayLength);
-
-        const randomStarterChoice = temporaryStartersList[startersArrayPosition];
+        const randomStarterChoice = starters[startersArrayPosition];
 
         // 2. MAINS
-        let temporaryMainsList = [];
-        const mains = await db.collection("mains").find().toArray();
+        const mains = await db.collection("mains").find(
+            {season: season}
+        ).toArray();
 
-        // a. Filter season
-        for (let m = 0; m < mains?.length; m++) {
-            if (mains[m].season === season) {
-                temporaryMainsList.push(mains[m]);
-            }
-        };
-
-        // b. Filter allergens / Not working well
-        // for (let m = 0; m < temporaryMainsList?.length; m++) {
-        //     for (let a = 0; a < temporaryMainsList[m].allergens?.length; a++) {
-        //         if (temporaryMainsList[a].allergens === allergens) {
-        //             temporaryMainsList.splice(m, 1);
-        //         }
-        //     }
-        // };
-
-        const mainsArrayLength = temporaryMainsList?.length;
+        const mainsArrayLength = mains?.length;
         const mainsArrayPosition = Math.floor(Math.random() * mainsArrayLength);
-
-        const randomMainChoice = temporaryMainsList[mainsArrayPosition];
+        const randomMainChoice = mains[mainsArrayPosition];
 
         // 3. DESSERTS
-        let temporaryDessertsList = [];
-        const desserts = await db.collection("desserts").find().toArray();
+        const desserts = await db.collection("desserts").find(
+            {season: season, sweetness: sweetness}
+        ).toArray();
 
-        // a. Filter season
-        for (let d = 0; d < desserts?.length; d++) {
-            if (desserts[d].season === season) {
-                temporaryDessertsList.push(desserts[d]);
-            }
-        };
-
-        // b. Filter allergens / Not working well
-        // for (let d = 0; d < temporaryDessertsList?.length; d++) {
-        //     for (let a = 0; a < temporaryDessertsList[d].allergens?.length; a++) {
-        //         if (temporaryDessertsList[a].allergens === allergens) {
-        //             temporaryDessertsList.splice(d, 1);
-        //         }
-        //     }
-        // };
-
-        // c. Filter sweetness / TO DO
-
-        const dessertsArrayLength = temporaryDessertsList?.length;
+        const dessertsArrayLength = desserts?.length;
         const dessertsArrayPosition = Math.floor(Math.random() * dessertsArrayLength);
-
-        const randomDessertChoice = temporaryDessertsList[dessertsArrayPosition];
+        const randomDessertChoice = desserts[dessertsArrayPosition];
 
         const newMenu = {
             starter: randomStarterChoice,

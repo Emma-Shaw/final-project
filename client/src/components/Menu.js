@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import { useAuth0 } from "@auth0/auth0-react";
 import whiteWine from "../assets/white_wine_pour.jpg"
@@ -22,7 +21,9 @@ export const Menu = () => {
     const [dessert, setDessert] = useState();
 
     // Wine states
+    const [paired, setPaired] = useState(false);
     const [winePairing, setWinePairing] = useState();
+    const [winePairingError, setWinePairingError] = useState(false);
     const [color, setColor] = useState();
     const [region, setRegion] = useState();
     const [organic, setOrganic] = useState(false);
@@ -55,7 +56,10 @@ export const Menu = () => {
         })
     }, []);
 
+    useEffect(() => {}, [paired, setPaired]);
+
     const requestWinePairing = () => {
+        setLoader(true);
         fetch("/wines", {
             method: "POST",
             headers: {
@@ -68,9 +72,20 @@ export const Menu = () => {
                 sugar: sugar,
             })
         })
-        .then((res) => {return res.json()})
+        .then((res) => {
+            if (res.status === 200) {
+                return res.json()
+            } else {
+                setWinePairingError(true);
+                setLoader(false);
+            }
+        })
         .then((data) => {
-            setWinePairing(data.data);
+            if (winePairingError === false) {
+                setPaired(true);
+                setWinePairing(data.data);
+            }
+            setLoader(false);
         })
         .catch((error) => {
             console.log("Error :", error);
@@ -104,9 +119,13 @@ export const Menu = () => {
                             <ItemDescription>{dessert.description}</ItemDescription>
                         </Item>}
                     </MenuItems>
-                    <WinePairing>
+                        {winePairingError === true && <WinePairing>
+                            <ItemName style={{ fontFamily: "Montserrat, Arial, Helvetica, sans-serif" }}>Oops - No wine pairings found. Please try again. </ItemName>
+                            <WinePairingBtn onClick={(() => {setPaired(false)})}>Back</WinePairingBtn>
+                        </WinePairing>}
+                        {winePairingError === false && <WinePairing>
                             <ItemTitle>Wine suggestion</ItemTitle>
-                            {winePairing && <WineSelection>
+                            {paired === true && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
                                 {color === "red_wines" ? <ItemName>Red wine</ItemName> : <ItemName>White wine</ItemName>}
                                 <ItemName>Name:&nbsp;{winePairing.name}</ItemName>
@@ -115,7 +134,7 @@ export const Menu = () => {
                                 <ItemName>Sugar:&nbsp;{winePairing.sugar}</ItemName>
                                 {winePairing?.pairings?.length > 0 && <ItemName>Pairings:&nbsp;{winePairing.pairings}</ItemName>}
                             </WineSelection>}
-                            {!winePairing && <WineSelection>
+                            {paired === false && <WineSelection>
                                 <OptionSelect autoComplete="red_wines"  onChange={((event) => {setColor(event.target.value)})} required >
                                     <Option value="" >Color</Option>
                                     <Option value="red_wines" >Red</Option>
@@ -152,7 +171,7 @@ export const Menu = () => {
                                     </OptionSelect>
                                 {color && <WinePairingBtn onClick={requestWinePairing}>Suggest wine</WinePairingBtn>}
                             </WineSelection>}
-                    </WinePairing>
+                    </WinePairing>}
                 </MenuCreation>
             </Wrapper>}
             </>}
