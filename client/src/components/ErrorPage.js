@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import logo from "../assets/happy_hour_logo.png";
 import cheersGif from "../assets/cheersLeo.gif";
 
 const ErrorPage = () => {
@@ -12,7 +11,6 @@ const ErrorPage = () => {
                     <Statement>We can't seem to find the <br /> page you are looking for... </Statement>
                 </Statements>
                 <Gif src={cheersGif} />
-                <Logo src={logo} />
             </ErrorMessage>
         </Wrapper>
     );

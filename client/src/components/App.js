@@ -16,6 +16,7 @@ import Menu from "./Menu";
 import OurPurpose from "./OurPurpose"
 import ErrorPage from "./ErrorPage";
 import { useEffect } from "react";
+import LandingPage from "./LandingPage";
 
 const App = () => {
 
@@ -49,21 +50,21 @@ const App = () => {
       authenticate()
   }, [isAuthenticated, getAccessTokenSilently]);
 
-  useEffect(() => {console.log("Current user :", user)}, []);
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
       <Header />
           <Routes>
-            <Route exact path="/" element={<AuthLayout />}></Route>
-            <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>}></Route>
-            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>}></Route>
-            <Route path="/create-menu" element={<RequireAuth><CreateMenu /></RequireAuth>}></Route>
-            <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>}></Route>
-            <Route path="/purpose" element={<RequireAuth><OurPurpose /></RequireAuth>}></Route>
-            <Route exact path="/not-found" element={<ErrorPage />}></Route>
+            <Route element={<AuthLayout />}>
+              <Route exact path="/" element={<LandingPage />} />
+              <Route path="/home" element={<RequireAuth><Homepage /></RequireAuth>} />
+              <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+              <Route path="/create-menu" element={<RequireAuth><CreateMenu /></RequireAuth>} />
+              <Route path="/menu" element={<RequireAuth><Menu /></RequireAuth>} />
+              <Route path="/purpose" element={<RequireAuth><OurPurpose /></RequireAuth>} />
+              <Route path="/*" element={<ErrorPage />} />
+            </Route>
           </Routes>
         </Wrapper>
         <Footer />

@@ -57,8 +57,6 @@ export const Menu = () => {
         })
     }, []);
 
-    useEffect(() => {}, [paired, setPaired]);
-
     const requestWinePairing = () => {
         setLoader(true);
         fetch("/wines", {
@@ -82,9 +80,9 @@ export const Menu = () => {
             }
         })
         .then((data) => {
-            if (winePairingError === false) {
+            if (!winePairingError) {
                 setPaired(true);
-                setWinePairing(data.data);
+                setWinePairing(data?.data);
             }
             setLoader(false);
         })
@@ -95,13 +93,13 @@ export const Menu = () => {
 
     return (
         <Container>
-            {loader === true && <Loader />}
-            {loader === false && <>
-            {menuCreated === false && <Wrapper>
+            {loader && <Loader />}
+            {!loader && <>
+            {!menuCreated && <Wrapper>
                 <Title>Start creating</Title>
                 <CreateBtn onClick={goCreate} >Create menu</CreateBtn>
             </Wrapper>}
-            {menuCreated === true && <Wrapper>
+            {menuCreated && <Wrapper>
                 <MenuCreation>
                     <MenuItems>
                         {starter && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
@@ -120,21 +118,27 @@ export const Menu = () => {
                             <ItemDescription>{dessert.description}</ItemDescription>
                         </Item>}
                     </MenuItems>
-                        {winePairingError === true && <WinePairing>
+                        {winePairingError && <WinePairing>
                             <ItemName>Oops - No wine pairings found. Please try again. </ItemName>
-                            <WinePairingBtn onClick={(() => {setPaired(false)})}>Back</WinePairingBtn>
+                            <WinePairingBtn onClick={(() => {
+                                setWinePairingError(false)
+                                setPaired(false)})
+                            }>Return</WinePairingBtn>
                         </WinePairing>}
-                        {winePairingError === false && <WinePairing>
+                        {!winePairingError && <WinePairing>
                             <ItemTitle>Wine suggestion</ItemTitle>
-                            {paired === true && <WineSelection>
+                            {paired && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
                                 <ItemName><ImGlass />&nbsp;{winePairing.name}</ItemName>
                                 <ItemName><ImMap2 />&nbsp;{winePairing.region}</ItemName>
                                 {organic === "true" && <ItemName><ImLeaf />&nbsp;Organic</ItemName>}
                                 <ItemName><ImStatsBars />&nbsp;{winePairing.sugar}</ItemName>
-                                {/* {winePairing?.pairings?.length > 0 && <ItemName>Pairings:&nbsp;{winePairing.pairings}</ItemName>} */}
+                                <WinePairingBtn onClick={(() => {
+                                setWinePairingError(false)
+                                setPaired(false)})
+                            }>Try again</WinePairingBtn>
                             </WineSelection>}
-                            {paired === false && <WineSelection>
+                            {!paired && <WineSelection>
                                 <OptionSelect autoComplete="red_wines"  onChange={((event) => {setColor(event.target.value)})} required >
                                     <Option value="" >Color</Option>
                                     <Option value="red_wines" >Red</Option>

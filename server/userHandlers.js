@@ -14,7 +14,6 @@ const dbName = "final_project_happy_hour";
 const authenticateUser = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
     const { nickname, picture, email } = req.body;
-    let clientExistsAlready = false;
     try {
         await client.connect();
 
@@ -28,15 +27,11 @@ const authenticateUser = async (req, res) => {
 
         const checkForUser = await db.collection("users").findOne({ email: email });
 
-        if (checkForUser) {
-            clientExistsAlready = true;
-        } else {
+        if (!checkForUser) {
             await db.collection("users").insertOne(newUser);
         };
 
-        clientExistsAlready === false
-        ? res.status(200).json({ status: 200, data: newUser, message: "User authenticated." })
-        : res.status(500).json({ status: 500, data: newUser, message: "Error - Something went wrong." })
+        res.status(200).json({ status: 200, message: "User authenticated." })
     } catch {
         console.log("Error:", err);
     }

@@ -13,8 +13,6 @@ export const AuthStatus = () => {
         actions: { loginUser }
     } = useContext(UserContext);
 
-    useEffect(() => {}, [isAuthenticated]);
-
     const home = useNavigate();
     const goToHomePage = () => {
         home("/home");
@@ -25,15 +23,21 @@ export const AuthStatus = () => {
         goToHomePage();
     };
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            goToHomePage();
+        }
+    }, [isAuthenticated]);
+
     return (
         <Container>
-            {!isAuthenticated && <Wrapper>
+            <Wrapper>
                 <WelcomeMenu>
                     <WelcomeLogo src={ mainLogo } />
                     <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
                 </WelcomeMenu>
                 <WelcomeArt src={ mainArt } />
-            </Wrapper>}
+            </Wrapper>
         </Container>
     );
 };
