@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
         --color-chill-blue: #669BBC;
         --color-calm-beige: #FFF8E8;
         --font-body: "Montserrat", Arial, Helvetica, sans-serif;
+        --font-title: 'Pinyon Script', cursive;
         letter-spacing: 1px;
         width: 100%;
         height: 100%;
@@ -61,7 +62,8 @@ const GlobalStyle = createGlobalStyle`
     }
     h1 {
         color: var(--color-cool-navy);
-        font-size: 25px;
+        font-size: 40px;
+        font-family: var(--font-title);
     }
     h2 {
         color: var(--color-chill-blue);

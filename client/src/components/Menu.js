@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import { useAuth0 } from "@auth0/auth0-react";
 import whiteWine from "../assets/white_wine_pour.jpg";
 import redWine from "../assets/red_wine_pour.jpg";
+import wineGlass from "../assets/wine_glass.jpg";
 import { ImGlass, ImMap2, ImLeaf, ImStatsBars } from "react-icons/im";
 
 export const Menu = () => {
@@ -101,6 +102,7 @@ export const Menu = () => {
             </Wrapper>}
             {menuCreated && <Wrapper>
                 <MenuCreation>
+                    <Title>Menu</Title>
                     <MenuItems>
                         {starter && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
                             <ItemTitle>Entrée</ItemTitle>
@@ -127,6 +129,7 @@ export const Menu = () => {
                         </WinePairing>}
                         {!winePairingError && <WinePairing>
                             <ItemTitle>Wine suggestion</ItemTitle>
+                            <WineImg src={wineGlass} />
                             {paired && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
                                 <ItemName><ImGlass />&nbsp;{winePairing.name}</ItemName>
@@ -139,6 +142,7 @@ export const Menu = () => {
                             }>Try again</WinePairingBtn>
                             </WineSelection>}
                             {!paired && <WineSelection>
+                                <OptionLayout>
                                 <OptionSelect autoComplete="red_wines"  onChange={((event) => {setColor(event.target.value)})} required >
                                     <Option value="" >Color</Option>
                                     <Option value="red_wines" >Red</Option>
@@ -162,6 +166,8 @@ export const Menu = () => {
                                         {color === "red_wines" && <Option value="United States" disabled >United States</Option>}
                                         {color === "white_wines" && <Option value="United States" >United States</Option>}
                                     </OptionSelect>
+                                    </OptionLayout>
+                                    <OptionLayout>
                                     <OptionSelect onChange={((event) => {setOrganic(event.target.value)})}>
                                         <Option value="" >Organic</Option>
                                         <Option value="true" >Yes</Option>
@@ -173,6 +179,7 @@ export const Menu = () => {
                                         <Option value="medium" >Medium</Option>
                                         <Option value="high" >High</Option>
                                     </OptionSelect>
+                                    </OptionLayout>
                                 {color && <WinePairingBtn onClick={requestWinePairing}>Suggest wine</WinePairingBtn>}
                             </WineSelection>}
                     </WinePairing>}
@@ -204,7 +211,7 @@ const Title = styled.h1`
 const MenuCreation = styled.div`
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
     padding: 0px 100px;
@@ -259,16 +266,20 @@ const ItemImg = styled.img`
 
 const WinePairing = styled.div`
     display: flex;
+    width: fit-content;
     flex-direction: column;
-    max-width: 400px;
     text-align: center;
     font-family: 'Pinyon Script', cursive;
     margin-bottom: 50px;
+    padding: 25px;
 `;
 
 const WinePairingBtn = styled.button`
     align-self: center;
     margin-top: 20px;
+`;
+
+const OptionLayout = styled.div`
 `;
 
 const OptionSelect = styled.select`
@@ -279,6 +290,7 @@ const OptionSelect = styled.select`
     padding: 5px 0px 5px 5px;
     margin: 10px;
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    width: 250px;
 
     &&:hover {
         cursor: pointer;
@@ -294,6 +306,14 @@ const WineSelection = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
+`;
+
+const WineImg = styled.img`
+    align-self: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 10px;
 `;
 
 export default Menu;

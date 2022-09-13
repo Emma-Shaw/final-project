@@ -60,6 +60,7 @@ const FirstBorder = styled.div`
 const SecondBorder = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 75px;
     padding: 20px;
     background: var(--color-chill-blue);
@@ -85,7 +86,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 50px;
     top: 0px;
 `;
 
@@ -98,7 +99,7 @@ const Logo = styled.img`
 const NavigationBar = styled.nav`
     display: flex;
     justify-content: space-around;
-    width: 400px;
+    width: 500px;
 `;
 
 const NavigationBtns = styled.div`

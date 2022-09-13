@@ -6,7 +6,7 @@ const ErrorPage = () => {
         <Wrapper>
             <ErrorMessage>
                 <Statements>
-                    <Statement style={{ fontSize: "80px" }}>Error code: 404</Statement>
+                    <Statement style={{ fontSize: "50px" }}>Error code: 404</Statement>
                     <Statement>Oops...</Statement>
                     <Statement>We can't seem to find the <br /> page you are looking for... </Statement>
                 </Statements>
@@ -29,21 +29,15 @@ const ErrorMessage = styled.div`
     padding: 100px;
 `;
 
-const Logo = styled.img`
-    height: 50px;
-    align-self: center;
-    margin: 20px;
-`;
-
 const Statements = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     min-height: 200px;
 `;
 
-const Statement = styled.h1`
+const Statement = styled.h2`
     display: flex;
     text-align: center;
 `;

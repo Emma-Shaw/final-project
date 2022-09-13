@@ -3,6 +3,10 @@ import { RecipesContext } from "./RecipesContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import main from "../assets/main.jpg";
+import starter from "../assets/starter.jpg";
+import sweets from "../assets/sweets.jpg";
+import letsEat from "../assets/eat.gif";
 
 export const CreateMenu = () => {
 
@@ -60,11 +64,12 @@ export const CreateMenu = () => {
 
     return (
         <Wrapper>
-            <Title>Let's get started</Title>
+            <Title>Create menu</Title>
             <Description>Help us generate the perfect menu for your taste by answering the following prompts.</Description>
             <Prompts>
                 <Prompt>
                     <Question>1. First, choose a season:</Question>
+                    <PromptImg src={starter} />
                     <Answers>
                         <Answer onClick={() => filterSeason("winter")}>Winter</Answer>
                         <Answer onClick={() => filterSeason("spring")}>Spring</Answer>
@@ -74,6 +79,7 @@ export const CreateMenu = () => {
                 </Prompt>
                 <Prompt>
                     <Question>2. Second, specify any allergens that may apply:</Question>
+                    <PromptImg src={main} />
                     <Answers>
                         <Answer onClick={() => filterAllergens("dairy")}>Dairy</Answer>
                         <Answer onClick={() => filterAllergens("gluten")}>Gluten</Answer>
@@ -83,6 +89,7 @@ export const CreateMenu = () => {
                 </Prompt>
                 <Prompt>
                     <Question>3. Finally, select your preferred dessert sweetness:</Question>
+                    <PromptImg src={sweets} />
                     <Answers>
                         <Answer onClick={() => filterSweetness("low")}>Low</Answer>
                         <Answer onClick={() => filterSweetness("medium")}>Medium</Answer>
@@ -91,6 +98,7 @@ export const CreateMenu = () => {
                 </Prompt>
                 <Prompt>
                     <Question>4. Generate your menu:</Question>
+                    <PromptImg style={{ background: "#669BBC" }} src={letsEat} />
                     <Answers>
                         <Answer onClick={goToMenu}>Generate</Answer>
                     </Answers>
@@ -131,6 +139,13 @@ const Prompt = styled.div`
     flex-direction: column;
     margin-bottom: 10px;
     align-items: center;
+`;
+
+const PromptImg = styled.img`
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 10px;
 `;
 
 const Question = styled.p`
