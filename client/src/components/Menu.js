@@ -128,7 +128,7 @@ export const Menu = () => {
                             }>Return</WinePairingBtn>
                         </WinePairing>}
                         {!winePairingError && <WinePairing>
-                            <ItemTitle>Wine suggestion</ItemTitle>
+                            <ItemTitle style={{ textDecoration: "none" }}>Wine suggestion</ItemTitle>
                             <WineImg src={wineGlass} />
                             {paired && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
