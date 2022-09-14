@@ -25,7 +25,10 @@ const Header = () => {
         <>
             {isAuthenticated && <Container>
                 {userName && <FirstBorder><ImSpoonKnife />&nbsp;Welcome,&nbsp;{userName}</FirstBorder>}
-                <SecondBorder><ImQuotesLeft />&nbsp;One cannot think well, love well, sleep well, if one has not dined well.&nbsp;<ImQuotesRight />&nbsp;- Virginia Woolf</SecondBorder>
+                <SecondBorder>
+                    <ImQuotesLeft />&nbsp;&nbsp;One cannot think well, love well, 
+                    sleep well, if one has not dined well.&nbsp;&nbsp;
+                    <ImQuotesRight /><span style={{ fontStyle: "normal" }}>&nbsp;- Virginia Woolf</span></SecondBorder>
                 <Wrapper>
                     <LogoLink to="/home"><Logo src={logo} /></LogoLink>
                     <NavigationBtns>
@@ -65,6 +68,8 @@ const SecondBorder = styled.div`
     padding: 20px;
     background: var(--color-chill-blue);
     color: var(--color-calm-beige);
+    font-style: italic;
+    font-size: 20px;
 `;
 
 const SettingsBtn = styled.button`

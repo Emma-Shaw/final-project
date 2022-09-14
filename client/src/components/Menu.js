@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import whiteWine from "../assets/white_wine_pour.jpg";
 import redWine from "../assets/red_wine_pour.jpg";
 import wineGlass from "../assets/wine_glass.jpg";
-import { ImGlass, ImMap2, ImLeaf, ImStatsBars } from "react-icons/im";
+import { GiWrappedSweet, GiWineBottle, GiEarthAmerica, GiFallingLeaf } from "react-icons/gi";
 
 export const Menu = () => {
 
@@ -129,13 +129,13 @@ export const Menu = () => {
                         </WinePairing>}
                         {!winePairingError && <WinePairing>
                             <ItemTitle style={{ textDecoration: "none" }}>Wine suggestion</ItemTitle>
-                            <WineImg src={wineGlass} />
+                            {!paired && <WineImg src={wineGlass} />}
                             {paired && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
-                                <ItemName><ImGlass />&nbsp;{winePairing.name}</ItemName>
-                                <ItemName><ImMap2 />&nbsp;{winePairing.region}</ItemName>
-                                {organic === "true" && <ItemName><ImLeaf />&nbsp;Organic</ItemName>}
-                                <ItemName><ImStatsBars />&nbsp;{winePairing.sugar}</ItemName>
+                                <ItemName><GiWineBottle /><br />{winePairing.name}</ItemName>
+                                <ItemName><GiEarthAmerica /><br />{winePairing.region}</ItemName>
+                                {organic === "true" && <ItemName><GiFallingLeaf /><br />Organic</ItemName>}
+                                <ItemName><GiWrappedSweet /><br />{winePairing.sugar}</ItemName>
                                 <WinePairingBtn onClick={(() => {
                                 setWinePairingError(false)
                                 setPaired(false)})
@@ -268,7 +268,6 @@ const WinePairing = styled.div`
     display: flex;
     width: fit-content;
     flex-direction: column;
-    text-align: center;
     font-family: 'Pinyon Script', cursive;
     margin-bottom: 50px;
     padding: 25px;
@@ -305,7 +304,7 @@ const Option = styled.option`
 const WineSelection = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
 `;
 
 const WineImg = styled.img`
