@@ -13,6 +13,7 @@ const checkJwt = auth({
     issuerBaseURL: `https://dev-41dcx13f.us.auth0.com/`,
 });
 
+// All Handlers
 const { allRedWines, allWhiteWines, randomWine} = require("./wineHandlers");
 const { allStarters, allMains, allDesserts, generateMenu } = require("./recipeHandlers");
 const { specificUser, createNewUser, authenticateUser  } = require("./userHandlers");
@@ -22,21 +23,20 @@ app.use(express.json())
 app.use(bodyParser.json({ type: "application/json" }))
 app.use(express.urlencoded({ extended: false }))
 
-// Route authentication
+// Route authentication (Auth0)
 app.get("/", ((req, res) => { res.status(200).json({ message: "No authentication required." }) }));
-app.post("/private", checkJwt, authenticateUser);
+app.post("/private", checkJwt, authenticateUser); // Create and authenticate users
 
 // Wines routes
 app.get("/wines/red", allRedWines) // Fetch all red wines data
 app.get("/wines/white", allWhiteWines) // Fetch all white wines data
-
-app.post("/wines", randomWine)
+app.post("/wines", randomWine) // Suggest random wine based on user criterias
 
 // Recipe routes
 app.get("/recipes/starters", allStarters) // Fetch all starters recipes data
 app.get("/recipes/mains", allMains) // Fetch all mains recipes data
 app.get("/recipes/desserts", allDesserts) // Fetch all desserts recipes data
-app.post("/recipes", generateMenu)
+app.post("/recipes", generateMenu) // Create randomized menu
 
 // User routes
 app.get("/users/:userEmail", specificUser) // Fetch specific user based on userId

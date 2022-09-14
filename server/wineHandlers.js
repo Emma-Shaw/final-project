@@ -55,8 +55,6 @@ const randomWine = async (req, res) => {
 
         const db = client.db(dbName);
 
-        console.log("TESTS :", color, region, organic, sugar);
-
         let wineArray;
 
         if (sugar === undefined) {
