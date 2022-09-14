@@ -102,7 +102,7 @@ export const Menu = () => {
             </Wrapper>}
             {menuCreated && <Wrapper>
                 <MenuCreation>
-                    <Title>Menu</Title>
+                    <Title>My menu</Title>
                     <MenuItems>
                         {starter && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
                             <ItemTitle>Entrée</ItemTitle>
@@ -120,6 +120,7 @@ export const Menu = () => {
                             <ItemDescription>{dessert.description}</ItemDescription>
                         </Item>}
                     </MenuItems>
+                    <CreateBtn onClick={goCreate} >New menu</CreateBtn>
                         {winePairingError && <WinePairing>
                             <ItemName>Oops - No wine pairings found. Please try again. </ItemName>
                             <WinePairingBtn onClick={(() => {
@@ -225,7 +226,7 @@ const MenuItems = styled.div`
     max-width: 600px;
     text-align: center;
     border: 2px solid var(--color-dark-wine);
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     background: white;
     color: var(--color-cool-navy);
 `;

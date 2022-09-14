@@ -16,7 +16,7 @@ const Profile = () => {
 
     return (
         <Wrapper>
-            <Title>Profile</Title>
+            <Title>My profile</Title>
             {user && <ProfileInfo>
                 <ProfileImg src={userAvatar} />
                 <ContactInfo>

@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import cheersGif from "../assets/cheersLeo.gif";
+import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
+
+    const landingPage = useNavigate();
+    const goToLandingPage = () => {
+        landingPage("/");
+    };
+
     return (
         <Wrapper>
             <ErrorMessage>
@@ -9,8 +16,9 @@ const ErrorPage = () => {
                     <Statement style={{ fontSize: "50px" }}>Error code: 404</Statement>
                     <Statement>Oops...</Statement>
                     <Statement>We can't seem to find the <br /> page you are looking for... </Statement>
+                    <Gif src={cheersGif} />
                 </Statements>
-                <Gif src={cheersGif} />
+                <LandingPageBtn onClick={goToLandingPage}>Return</LandingPageBtn>
             </ErrorMessage>
         </Wrapper>
     );
@@ -40,10 +48,14 @@ const Statements = styled.div`
 const Statement = styled.h2`
     display: flex;
     text-align: center;
+    margin-top: 20px;
 `;
 
 const Gif = styled.img`
     transform: scale(0.75);
+`;
+
+const LandingPageBtn = styled.button`
 `;
 
 export default ErrorPage;
