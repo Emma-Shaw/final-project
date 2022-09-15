@@ -5,12 +5,13 @@ import Loader from "./Loader";
 import { useAuth0 } from "@auth0/auth0-react";
 import whiteWine from "../assets/white_wine_pour.jpg";
 import redWine from "../assets/red_wine_pour.jpg";
-import wineGlass from "../assets/wine_glass.jpg";
 import { GiWrappedSweet, GiWineBottle, GiEarthAmerica, GiFallingLeaf } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
 
 export const Menu = () => {
 
     const [loader, setLoader] = useState(false);
+    const [open, setOpen] = useState(false);
 
     // User states
     const { user } = useAuth0();
@@ -104,12 +105,12 @@ export const Menu = () => {
                 <MenuCreation>
                     <Title>My menu</Title>
                     <MenuItems>
-                        {starter && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
+                        {starter && <Item style={{ borderBottom: "1px dotted var(--color-chill-blue)" }} >
                             <ItemTitle>Entrée</ItemTitle>
                             <ItemName>{starter.name}</ItemName>
                             <ItemDescription>{starter.description}</ItemDescription>
                         </Item>}
-                        {main && <Item style={{ borderBottom: "1px dotted var(--color-dark-wine)" }} >
+                        {main && <Item style={{ borderBottom: "1px dotted var(--color-chill-blue)" }} >
                             <ItemTitle>Main Course</ItemTitle>
                             <ItemName>{main.name}</ItemName>
                             <ItemDescription>{main.description}</ItemDescription>
@@ -120,23 +121,28 @@ export const Menu = () => {
                             <ItemDescription>{dessert.description}</ItemDescription>
                         </Item>}
                     </MenuItems>
-                    <CreateBtn onClick={goCreate} >New menu</CreateBtn>
+                        <OptionBtns>
+                            <CreateBtn onClick={goCreate} >Update menu</CreateBtn>
+                            <CreateBtn onClick={(() => setOpen(true))} >Suggest wine</CreateBtn>
+                        </OptionBtns>
                         {winePairingError && <WinePairing>
-                            <ItemName>Oops - No wine pairings found. Please try again. </ItemName>
+                            <ItemName style={{ color: "var(--color-dark-wine)" }}>Oops - No wine pairings found. Please try again. </ItemName>
                             <WinePairingBtn onClick={(() => {
                                 setWinePairingError(false)
                                 setPaired(false)})
                             }>Return</WinePairingBtn>
                         </WinePairing>}
-                        {!winePairingError && <WinePairing>
-                            <ItemTitle style={{ textDecoration: "none" }}>Wine suggestion</ItemTitle>
-                            {!paired && <WineImg src={wineGlass} />}
+                        {!winePairingError && open && <WinePairing>
+                            <Close onClick={(() => {
+                                setOpen(false)
+                                setPaired(false)})}><IoClose /></Close>
+                            {!paired && <ItemTitle style={{ color: "var(--color-dark-wine)" }}>Wine suggestion</ItemTitle>}
                             {paired && <WineSelection>
                                 {color === "red_wines" ? <ItemImg src={redWine} /> : <ItemImg src={whiteWine}/>}
-                                <ItemName><GiWineBottle /><br />{winePairing.name}</ItemName>
-                                <ItemName><GiEarthAmerica /><br />{winePairing.region}</ItemName>
-                                {organic === "true" && <ItemName><GiFallingLeaf /><br />Organic</ItemName>}
-                                <ItemName><GiWrappedSweet /><br />{winePairing.sugar}</ItemName>
+                                <ItemName style={{ color: "var(--color-dark-wine)" }}><GiWineBottle /><br />{winePairing.name}</ItemName>
+                                <ItemName style={{ color: "var(--color-dark-wine)" }}><GiEarthAmerica /><br />{winePairing.region}</ItemName>
+                                {organic === "true" && <ItemName style={{ color: "var(--color-dark-wine)" }}><GiFallingLeaf /><br />Organic</ItemName>}
+                                <ItemName style={{ color: "var(--color-dark-wine)" }}><GiWrappedSweet /><br />{winePairing.sugar}</ItemName>
                                 <WinePairingBtn onClick={(() => {
                                 setWinePairingError(false)
                                 setPaired(false)})
@@ -210,6 +216,7 @@ const Title = styled.h1`
 `;
 
 const MenuCreation = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -225,36 +232,34 @@ const CreateBtn = styled.button`
 const MenuItems = styled.div`
     max-width: 600px;
     text-align: center;
-    border: 2px solid var(--color-dark-wine);
+    border: 2px solid var(--color-chill-blue);
     margin-bottom: 20px;
-    background: white;
-    color: var(--color-cool-navy);
+    background: var(--color-cool-navy);
 `;
 
 const Item = styled.div`
     margin: 20px;
-    font-family: 'Pinyon Script', cursive;
 `
 
 const ItemTitle = styled.h2`
     margin: 10px;
-    text-decoration: underline;
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
-    color: var(--color-dark-wine);
+    color: var(--color-calm-beige);
+    font-family: 'Pinyon Script', cursive;
 `;
 
 const ItemName = styled.h3`
     margin: 20px;
-    font-size: 25px;
-    color: var(--color-dark-wine);
+    font-size: 20px;
+    color: var(--color-calm-beige);
 `;
 
 const ItemDescription = styled.p`
     margin: 20px;
     font-style: italic;
-    font-size: 20px;
-    color: var(--color-dark-wine);
+    font-size: 15px;
+    color: var(--color-calm-beige);
 `;
 
 const ItemImg = styled.img`
@@ -266,12 +271,15 @@ const ItemImg = styled.img`
 `;
 
 const WinePairing = styled.div`
+    position: absolute;
     display: flex;
-    width: fit-content;
+    width: 800px;
     flex-direction: column;
     font-family: 'Pinyon Script', cursive;
     margin-bottom: 50px;
-    padding: 25px;
+    padding: 20px;
+    background: var(--color-calm-beige);
+    border: 5px solid var(--color-cool-navy);
 `;
 
 const WinePairingBtn = styled.button`
@@ -305,15 +313,32 @@ const Option = styled.option`
 const WineSelection = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     text-align: center;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 `;
 
-const WineImg = styled.img`
-    align-self: center;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    margin: 10px;
+const Close = styled.button`
+    align-self: flex-end;
+    color: var(--color-dark-wine);
+    background: none;
+    border: none;
+    width: 25px;
+    height: 25px;
+    transform: scale(1.25);
+    padding: 5px;
+
+    &&:hover {
+        background: none;
+        color: var(--color-dark-wine);
+        opacity: 0.25;
+    }
+`;
+
+const OptionBtns = styled.div`
+    display: flex;
+    justify-content: space-around;
+    min-width: 600px;
 `;
 
 export default Menu;
