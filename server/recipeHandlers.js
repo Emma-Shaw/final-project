@@ -67,7 +67,7 @@ const allDesserts = async (req, res) => {
 
 const generateMenu = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
-    const { season, sweetness, allergens, email } = req.body;
+    const { season, sweetness, allergen, email } = req.body;
     try {
         await client.connect();
 
@@ -75,7 +75,7 @@ const generateMenu = async (req, res) => {
 
         // 1. STARTERS - filter through starters and narrow down list based on user criterias
         const starters = await db.collection("starters").find(
-            {season: season}
+            {season: season, allergens: { $nin: [allergen] }}
         ).toArray();
 
         const startersArrayLength = starters?.length;
@@ -84,7 +84,7 @@ const generateMenu = async (req, res) => {
 
         // 2. MAINS - filter through mains and narrow down list based on user criterias
         const mains = await db.collection("mains").find(
-            {season: season}
+            {season: season, allergens: { $nin: [allergen] }}
         ).toArray();
 
         const mainsArrayLength = mains?.length;
@@ -93,7 +93,7 @@ const generateMenu = async (req, res) => {
 
         // 3. DESSERTS - filter through desserts and narrow down list based on user criterias
         const desserts = await db.collection("desserts").find(
-            {season: season, sweetness: sweetness}
+            {season: season, sweetness: sweetness, allergens: { $nin: [allergen] }}
         ).toArray();
 
         const dessertsArrayLength = desserts?.length;
