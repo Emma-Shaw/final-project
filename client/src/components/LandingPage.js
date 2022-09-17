@@ -3,7 +3,7 @@ import mainLogo from "../assets/welcome_page_logo.png";
 import mainArt from "../assets/welcome_page_art.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useContext } from "react";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import { useEffect } from "react";
 
@@ -35,6 +35,10 @@ export const AuthStatus = () => {
                 <WelcomeMenu>
                     <WelcomeLogo src={ mainLogo } />
                     <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
+                    <Statement>
+                        Sign-in or Sign-up to Happy Hour™ - A fun, simple and convenient way to generate
+                        a delicious menu for your next dinner party. Cheers!
+                    </Statement>
                 </WelcomeMenu>
                 <WelcomeArt src={ mainArt } />
             </Wrapper>
@@ -43,27 +47,29 @@ export const AuthStatus = () => {
 };
 
 const Container = styled.div`
+    width: 100vh;
 `;
 
 const Wrapper = styled.div`
     position: fixed;
     display: flex;
     align-items: center;
-    margin-top: 200px;
-    margin-left: 100px;
+    margin-top: 10%;
+    margin-left: 10%;
     background: var(--color-calm-beige);
+    width: 100vh;
 `;
 
 const WelcomeMenu = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 200px;
+    height: 300px;
     margin: 5px;
 `;
 
 const WelcomeLogo = styled.img`
-    height: 125px; 
+    height: 175px; 
 `;
 
 const GetStarted = styled.button`
@@ -71,7 +77,12 @@ const GetStarted = styled.button`
 `;
 
 const WelcomeArt = styled.img`
-    height: 425px;
+    height: 500px;
+`;
+
+const Statement = styled.p`
+    font-size: 10px;
+    width: 450px;
 `;
 
 export default AuthStatus;
