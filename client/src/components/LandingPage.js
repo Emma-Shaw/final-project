@@ -34,11 +34,13 @@ export const AuthStatus = () => {
             <Wrapper>
                 <WelcomeMenu>
                     <WelcomeLogo src={ mainLogo } />
-                    <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
-                    <Statement>
-                        Sign-in or Sign-up to Happy Hour™ - A fun, simple and convenient way to generate
-                        a delicious menu for your next dinner party. Cheers!
-                    </Statement>
+                    <div>
+                        <GetStarted onClick={authenticateUser}>Sign-in</GetStarted>
+                        <Statement>
+                            Sign-in or Sign-up to Happy Hour™ - A fun, simple and convenient way to generate
+                            a delicious menu for your next dinner party. Cheers!
+                        </Statement>
+                    </div>
                 </WelcomeMenu>
                 <WelcomeArt src={ mainArt } />
             </Wrapper>
@@ -64,7 +66,7 @@ const WelcomeMenu = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 300px;
+    height: 350px;
     margin: 5px;
 `;
 
@@ -83,6 +85,7 @@ const WelcomeArt = styled.img`
 const Statement = styled.p`
     font-size: 10px;
     width: 450px;
+    margin: 20px 5px;
 `;
 
 export default AuthStatus;
