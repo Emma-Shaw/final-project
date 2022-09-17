@@ -80,6 +80,7 @@ const GetStarted = styled.button`
 
 const WelcomeArt = styled.img`
     height: 500px;
+    margin: 0px 50px;
 `;
 
 const Statement = styled.p`
