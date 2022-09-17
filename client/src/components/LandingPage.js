@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     position: fixed;
     display: flex;
     align-items: center;
-    margin-top: 10%;
+    margin-top: 12.5%;
     margin-left: 10%;
     background: var(--color-calm-beige);
     width: 100vh;
