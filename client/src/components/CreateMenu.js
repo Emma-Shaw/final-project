@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { RecipesContext } from "./RecipesContext";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import main from "../assets/main.jpg";
 import starter from "../assets/starter.jpg";
@@ -13,14 +12,8 @@ export const CreateMenu = () => {
     const { user } = useAuth0();
     const currentEmail = user?.email;
 
-    const {                 
-        starters,
-        mains,
-        desserts,
-    } = useContext(RecipesContext);
-
     const [season, setSeason]  = useState();
-    const [allergens, setAllergens]  = useState([]);
+    const [allergen, setAllergen]  = useState();
     const [sweetness, setSweetness]  = useState();
 
     // Store user's season selection in a useState
@@ -29,8 +22,8 @@ export const CreateMenu = () => {
     };
 
     // Store user's allergen selection(s) in a useState
-    const filterAllergens = (choice) => {
-        setAllergens(allergens => [...allergens, choice]);
+    const filterAllergen = (choice) => {
+        setAllergen(choice);
     };
 
     // Store user's sweeteness selection in a useState
@@ -47,7 +40,7 @@ export const CreateMenu = () => {
             },
             body: JSON.stringify({
                 season: season,
-                allergens: allergens,
+                allergen: allergen,
                 sweetness: sweetness,
                 email: currentEmail,
             })
@@ -71,29 +64,40 @@ export const CreateMenu = () => {
                     <Question>1. First, choose a season:</Question>
                     <PromptImg src={starter} />
                     <Answers>
-                        <Answer onClick={() => filterSeason("winter")}>Winter</Answer>
-                        <Answer onClick={() => filterSeason("spring")}>Spring</Answer>
-                        <Answer onClick={() => filterSeason("summer")}>Summer</Answer>
-                        <Answer onClick={() => filterSeason("fall")}>Fall</Answer>
+                        {season !== "winter" && <Answer onClick={() => filterSeason("winter")}>Winter</Answer>}
+                        {season === "winter" && <AnswerChosen onClick={() => filterSeason("winter")}>Winter</AnswerChosen>}
+                        {season !== "spring" && <Answer onClick={() => filterSeason("spring")}>Spring</Answer>}
+                        {season === "spring" && <AnswerChosen onClick={() => filterSeason("spring")}>Spring</AnswerChosen>}
+                        {season !== "summer" && <Answer onClick={() => filterSeason("summer")}>Summer</Answer>}
+                        {season === "summer" && <AnswerChosen onClick={() => filterSeason("summer")}>Summer</AnswerChosen>}
+                        {season !== "fall" && <Answer onClick={() => filterSeason("fall")}>Fall</Answer>}
+                        {season === "fall" && <AnswerChosen onClick={() => filterSeason("fall")}>Fall</AnswerChosen>}
                     </Answers>
                 </Prompt>
                 <Prompt>
                     <Question>2. Second, specify any allergens that may apply:</Question>
                     <PromptImg src={main} />
                     <Answers>
-                        <Answer onClick={() => filterAllergens("dairy")}>Dairy</Answer>
-                        <Answer onClick={() => filterAllergens("gluten")}>Gluten</Answer>
-                        <Answer onClick={() => filterAllergens("shellfish")}>Shellfish</Answer>
-                        <Answer onClick={() => filterAllergens("nuts")}>Nuts</Answer>
+                        {allergen !== "dairy" && <Answer onClick={() => filterAllergen("dairy")}>Dairy</Answer>}
+                        {allergen === "dairy" && <AnswerChosen onClick={() => filterAllergen("dairy")}>Dairy</AnswerChosen>}
+                        {allergen !== "gluten" && <Answer onClick={() => filterAllergen("gluten")}>Gluten</Answer>}
+                        {allergen === "gluten" && <AnswerChosen onClick={() => filterAllergen("gluten")}>Gluten</AnswerChosen>}
+                        {allergen !== "shellfish" && <Answer onClick={() => filterAllergen("shellfish")}>Shellfish</Answer>}
+                        {allergen === "shellfish" && <AnswerChosen onClick={() => filterAllergen("shellfish")}>Shellfish</AnswerChosen>}
+                        {allergen !== "nuts" && <Answer onClick={() => filterAllergen("nuts")}>Nuts</Answer>}
+                        {allergen === "nuts" && <AnswerChosen onClick={() => filterAllergen("nuts")}>Nuts</AnswerChosen>}
                     </Answers>
                 </Prompt>
                 <Prompt>
                     <Question>3. Finally, select your preferred dessert sweetness:</Question>
                     <PromptImg src={sweets} />
                     <Answers>
-                        <Answer onClick={() => filterSweetness("low")}>Low</Answer>
-                        <Answer onClick={() => filterSweetness("medium")}>Medium</Answer>
-                        <Answer onClick={() => filterSweetness("high")}>High</Answer>
+                    {sweetness !== "low" && <Answer onClick={() => filterSweetness("low")}>Low</Answer>}
+                    {sweetness === "low" && <AnswerChosen onClick={() => filterSweetness("low")}>Low</AnswerChosen>}
+                    {sweetness !== "medium" && <Answer onClick={() => filterSweetness("medium")}>Medium</Answer>}
+                    {sweetness === "medium" && <AnswerChosen onClick={() => filterSweetness("medium")}>Medium</AnswerChosen>}
+                    {sweetness !== "high" && <Answer onClick={() => filterSweetness("high")}>High</Answer>}
+                    {sweetness === "high" && <AnswerChosen onClick={() => filterSweetness("high")}>High</AnswerChosen>}
                     </Answers>
                 </Prompt>
                 <Prompt>
@@ -158,11 +162,13 @@ const Answers = styled.div`
 
 const Answer = styled.button`
     margin: 10px;
+`;
 
-    &&:focus {
-        background: var(--color-dark-wine);
-        color: var(--color-calm-beige);
-    }
+const AnswerChosen = styled.button`
+    margin: 10px;
+    background: var(--color-cool-navy);
+    color: var(--color-calm-beige);
+    border: none;
 `;
 
 export default CreateMenu;
