@@ -230,7 +230,7 @@ const CreateBtn = styled.button`
 `;
 
 const MenuItems = styled.div`
-    max-width: 600px;
+    max-width: 800px;
     text-align: center;
     border: 2px solid var(--color-chill-blue);
     margin-bottom: 20px;
@@ -273,7 +273,7 @@ const ItemImg = styled.img`
 const WinePairing = styled.div`
     position: absolute;
     display: flex;
-    width: 800px;
+    width: 600px;
     flex-direction: column;
     font-family: 'Pinyon Script', cursive;
     margin-bottom: 50px;
